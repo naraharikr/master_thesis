@@ -17,8 +17,7 @@ The <sync_networks.m> contains following algorithms.
 
 <img src="https://latex.codecogs.com/gif.latex?f&space;=&space;\frac{1}{2}\left&space;\|x&space;-&space;x_0\right&space;\|^{2}" title="f = \frac{1}{2}\left \|x - x_0\right \|^{2}" />
 
-*x0 = initial value at each agent i (n x 1)*
-*n = number of agents*
+*x0 = initial value at each agent i (n x 1),*
 
-*Please provide proper acknowledgment of all uses of this code.*
+*n = number of agents*
 
