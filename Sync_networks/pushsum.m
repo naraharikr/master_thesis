@@ -3,7 +3,7 @@
 % Implementation of Pushsum consensus algorithm
 %
 %
-%% START: Pushusm Consensus algorithm
+%% START: Pushusm Consensus Algorithm
 
 clc; clear; close all;
 
@@ -48,4 +48,4 @@ hold off;
 % Display optimal_x and final z
 fprintf('\nADD_OPT/Push-DIGing Consensus result\n');
 display(z);
-%% END: Pushusm Consensus algorithm
+%% END: Pushusm Consensus Algorithm

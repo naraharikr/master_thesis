@@ -10,17 +10,6 @@
 % OUTPUT: gFeval = gradient of fi(x) at z
 %
 %% Gradient computation
-% function df = compute_gradient(f,y)
-%   
-% if(nargain<2)
-%     break;
-% else 
-%   df = gradient(f,y); 
-%   for greater certainty you could
-%   g = gradient(f, symvar(f));  %which is what the simple call does
-% end %%END IF(NARGAIN<2)
-% 
-% end
 function gFeval=compute_gradient(z,x0,alpha)
 n = length(x0);
 x = sym('x',[1 n]);
@@ -33,6 +22,7 @@ end
 gF = gradient(f,x);
 
 gFeval = subs(gF,x,z);
+%
+%
+%
 %% END
-
-
