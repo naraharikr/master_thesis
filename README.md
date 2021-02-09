@@ -1,4 +1,4 @@
-# Distributed Coordination over Undirected graphs using Row-stochastic weights
+# Distributed Coordination over Directed graphs using Row-stochastic weights
 
 This project is an ongoing part of my Master Thesis at Aalto University.  The Master thesis is being supervised by [Themistoklis Charalambous](https://themistoklis.org/), Associate Professor, Aalto University.
 
