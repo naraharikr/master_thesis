@@ -3,7 +3,9 @@
 Synchronous networks are the multi-agent netwroks where each agent is updates their information synchronously to solve a distributed optimization problem.
 
 <pushsum.m> implements Pushsum consensus algorithm as in **(Section III - B1)**
+
 <subgrad_push.m> implements Subgradient-Push consensus algorithm as in **(Section III - B2)**
+
 <addopt.m> implements ADDOPT/DIGing consensus as in **(Section III - B3)**
 
 
