@@ -8,7 +8,7 @@ Xin, R., Xi, C. & Khan, U. FROST—Fast row-stochastic optimization with uncoord
 
 
 
-## Results for 30 iterations - Algorithms using Column-stochastic Weights
+## Results - Algorithms using Column-stochastic Weights
 
 ![Push-sum consensus](https://github.com/naraharikr/master_thesis/blob/main/Results/Sync_networks/pushsum_consensus.png)
 
