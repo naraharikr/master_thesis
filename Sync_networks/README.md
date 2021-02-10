@@ -17,3 +17,18 @@ Synchronous networks are the multi-agent netwroks where each agent is updates th
 
 *n = number of agents*
 
+## Sneakpeak into results 
+
+### Algorithms using Column-stochastic Weights
+
+### Pushsum Consensus
+
+![Push-sum consensus](https://github.com/naraharikr/master_thesis/blob/main/Results/Sync_networks/pushsum_consensus.png)
+
+### Subgradient-Push Consensus
+
+![Subgradient-push consensus](https://github.com/naraharikr/master_thesis/blob/main/Results/Sync_networks/subgradient_push.png)
+
+### ADDOPT/Push-DIGing Consensus
+
+![ADDOPT/Push-DIGing consensus](https://github.com/naraharikr/master_thesis/blob/main/Results/Sync_networks/addopt.png)
