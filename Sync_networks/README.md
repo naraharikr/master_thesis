@@ -2,11 +2,11 @@
 
 Synchronous networks are the multi-agent netwroks where each agent is updates their information synchronously to solve a distributed optimization problem.
 
-<pushsum.m> implements Pushsum consensus algorithm as in **(Section III - B1)**
+[pushsum.m](https://github.com/naraharikr/master_thesis/blob/main/Sync_networks/pushsum.m) implements Pushsum consensus algorithm as in **(Section III - B1)**
 
-<subgrad_push.m> implements Subgradient-Push consensus algorithm as in **(Section III - B2)**
+[subgrad_push.m](https://github.com/naraharikr/master_thesis/blob/main/Sync_networks/subgrad_push.m) implements Subgradient-Push consensus algorithm as in **(Section III - B2)**
 
-<addopt.m> implements ADDOPT/DIGing consensus as in **(Section III - B3)**
+[addopt.m](https://github.com/naraharikr/master_thesis/blob/main/Sync_networks/appopt.m) implements ADDOPT/DIGing consensus as in **(Section III - B3)**
 
 
 *PS: As the thesis is still in the initial stages, the local function "f" at each agent is considered as a Quadratic cost function and impmentation follows the same.  Not distributed logistic regression problem as stated in Section VI - Numerical Results*
