@@ -22,7 +22,7 @@ subgrad_Z = z;
 x_arxiv = x;
 % initialization for cost function
 alpha = [2 4 5 3 1]';
-x0 = x;
+x0 = randi([1 5],n,1);
 z0 = z;
 gradientEstimator = zeros(n,1);
 gradientEstimator_arxiv = zeros(n,1);
@@ -32,9 +32,9 @@ end
 
 % consensus value
 average_x = mean(x);
-optimal_x = sum(alpha.*x)/sum(alpha);
+optimal_x = sum(alpha.*x0)/sum(alpha);
 %% Subgradient-Push algorithm
-    itr = 100; step = 1;
+    itr = 200; step = 1;
     for i=1:itr
         v = B*v;
         x = B*x - step*gradientEstimator_arxiv(:,end); x_arxiv = [x_arxiv x];

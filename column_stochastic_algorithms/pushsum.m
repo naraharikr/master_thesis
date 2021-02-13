@@ -22,6 +22,7 @@ pushsum_z = z;
 
 % consensus value
 average_x = mean(x);
+
 %% Pushsum Consensus
    fprintf('\nPushsum Consensus result\n');
    itr = 50;
@@ -33,7 +34,6 @@ average_x = mean(x);
    end
    
 %% Plot Results
-
 set(0, 'DefaultTextInterpreter', 'latex')
 set(gca, 'TickLabelInterpreter', 'latex')
 
@@ -48,4 +48,5 @@ hold off;
 % Display optimal_x and final z
 fprintf('\nADD_OPT/Push-DIGing Consensus result\n');
 display(z);
+
 %% END: Pushusm Consensus Algorithm

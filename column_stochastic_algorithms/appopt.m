@@ -22,7 +22,7 @@ z = v./x; ADDOPT_z = z;
 
 % initialization for cost function
 alpha = [2 4 5 3 1]';
-x0 = x;
+x0 = randi([1 5],n,1);
 y0 = y;
 gradientEstimator = zeros(n,1);
 for i=1:n
@@ -32,10 +32,10 @@ gradientEstimator_arxiv=y0;
 
 % consensus value
 average_x = mean(x);
-optimal_x = sum(alpha.*x)/sum(alpha);
+optimal_x = sum(alpha.*x0)/sum(alpha);
 
 %% ADD_OPT/Push-DIGing
-    itr = 100; step = 0.01;
+    itr = 200; step = 0.01;
     for i=1:itr
         v = B*v;
         x = B*x - step*y;
@@ -66,4 +66,3 @@ fprintf('\nADD_OPT/Push-DIGing Consensus result\n');
 display(z);
  
 %% END: ADDOPT/Push-DIGing Algorithm
-
