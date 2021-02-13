@@ -4,4 +4,4 @@ This project is an ongoing part of my Master Thesis at Aalto University.  The Ma
 
 The master thesis focuses primalrily to reproduce the distributed optimisation algorithms proposed in the following research paper.
 
-Xin, R., Xi, C. & Khan, U. FROST—Fast row-stochastic optimization with uncoordinated step-sizes. EURASIP J. Adv. Signal Process. 2019, 1 (2019). https://doi.org/10.1186/s13634-018-0596-y 
+Xin, R., Xi, C. & Khan, U. [FROST—Fast row-stochastic optimization with uncoordinated step-sizes](https://doi.org/10.1186/s13634-018-0596-y ). EURASIP J. Adv. Signal Process. 2019, 1 (2019). 
