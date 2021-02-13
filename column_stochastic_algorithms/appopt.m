@@ -15,15 +15,14 @@ B = [1/3  0   0  1/2  0;
 
 % initialization
 n = length(B);
-x = [-1 -5 0 2 3]';
+x = [4 1 5 2 3]';
 v = ones(n,1);
 y = zeros(n,1); 
 z = v./x; ADDOPT_z = z;
 
 % initialization for cost function
 alpha = [2 4 5 3 1]';
-x0 = randi([1 5],n,1);
-y0 = y;
+x0 = x; y0 = y;
 gradientEstimator = zeros(n,1);
 for i=1:n
     y0(i)=compute_gradient(x0(i),x0(i),alpha(i));
@@ -52,7 +51,7 @@ optimal_x = sum(alpha.*x0)/sum(alpha);
 set(0, 'DefaultTextInterpreter', 'latex')
 set(gca, 'TickLabelInterpreter', 'latex')
 
-figure(1); hold on; 
+figure(1); hold on; box on;
 plot(0:itr,ADDOPT_z);
 xl=xlabel('Number of iterations','fontsize',14); set(xl, 'Interpreter', 'latex');
 yl=ylabel('Ratio $z_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');

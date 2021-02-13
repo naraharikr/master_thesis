@@ -15,12 +15,12 @@ B = [1/3  0   0  1/2  0;
       0  1/3 1/2  0  1/3];
 % Initialization
 n = length(B);
-x = [-4 1 0 -2 3]';
+x = [4 1 5 2 3]';
 v = ones(n,1);
 z = x./v;
 pushsum_z = z;
 
-% consensus value
+% consensus value = average_x
 average_x = mean(x);
 
 %% Pushsum Consensus
@@ -37,7 +37,7 @@ average_x = mean(x);
 set(0, 'DefaultTextInterpreter', 'latex')
 set(gca, 'TickLabelInterpreter', 'latex')
 
-figure(1); hold on; 
+figure(1); hold on; box on;
 plot(0:itr,pushsum_z);
 xl=xlabel('Number of iterations','fontsize',14); set(xl, 'Interpreter', 'latex');
 yl=ylabel('Ratio $z_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
