@@ -6,15 +6,16 @@ In the presented work, we study the distributed optimization over directed graph
 
 In the presented distributed network, *n* agents caters to solve a distributed problem in `P1`.
 
-```math
+<pre xml:lang="latex">\sqrt{2}</pre>
+<pre xml:lang="latex">
 \text{P1}: \quad\underset{\mathbf{x}}{\min} F(\mathbf{x})\triangleq\frac{1}{n}\sum\limits_{i=1}^{n}f_{i}(\mathbf{x}),
-```
+</pre>
 
 where each agent locally solves private cost function $`f_i(x)`$ and communicates to it's out neighbours to find the global minimizer of aggregate cost, $`F(x)`$.
 
 The private cost function $`f_i(x)`$ used at each agent is a `Distributed Quadratic cost function` defined as,
 
-```math
+``` math
 f_i(x) = \frac{1}{2}{\alpha}_i(x-{\rho}_i)^{2}
 ```
 ### Research Objectives
@@ -26,7 +27,7 @@ The ouputs of the reserach is to study,
 
 ### System Requirements
 
-The algorithms are developed with `MATLAB (R2020b)` and tested on `Windows`platform. `MATLAB` is sufficeint enough for execution of the scripts, preferably `R2020a` or `R2020b`.  The back compatibility has not been done, if you're using previous version of the software.  Also, evaluation of algorithms has been tested only on Windows platform at the moment.  In case of issues in Linux or MAC kindly raise the query or [`contact me`](narahari.kasagattaramesh@aalto.fi) 
+The algorithms are developed with `MATLAB (R2020b)` and tested on `Windows`platform. `MATLAB` is sufficeint enough for execution of the scripts, preferably `R2020a` or `R2020b`.  The back compatibility has not been done, if you're using previous version of the software.  Also, evaluation of algorithms has been tested only on Windows platform at the moment.  In case of issues in Linux or MAC kindly raise the query or contact me `narahari.kasagattaramesh@aalto.fi`
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
