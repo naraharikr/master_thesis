@@ -22,25 +22,25 @@ In this secton, we show the convergence plots for all algorithms proposed in abo
 **Push-sum Algorithm**
 <!-- Push sum consensus -->
 <p align="left"">
-  <img src="./assests/sync_plots/sync_pushsum.png" alt="network" width="300"/>
+  <img src="../assests/sync_plots/sync_pushsum.png" alt="network" width="300"/>
 </p>
 
 **Subgradient-Push Algorithm**
 <!-- Subgradient-Push consensus -->
 <p align="right"">
-  <img src="./assests/sync_plots/sync_subgradpush.png" alt="network" width="300"/>
+  <img src="../assests/sync_plots/sync_subgradpush.png" alt="network" width="300"/>
 </p>
 
 **ADD-OPT Algorithm**
 <!-- ADD-OPT consensus -->
 <p align="left"">
-  <img src="./assests/sync_plots/sync_addopt.png" alt="network" width="300"/>
+  <img src="../assests/sync_plots/sync_addopt.png" alt="network" width="300"/>
 </p>
 
 **FROST Algorithm**
 <!-- FROST consensus -->
 <p align="right"">
-  <img src="./assests/sync_plots/sync_frost.png" alt="network" width="300"/>
+  <img src="../assests/sync_plots/sync_frost.png" alt="network" width="300"/>
 </p>
 
 
@@ -51,5 +51,5 @@ The following figure plots the comparision of average mean-square error between 
 
 <!-- Residual plot comparision between ADD-OPT and FROST -->
 <p align="centre"">
-  <img src="./assests/sync_avg_mse_comparision_addopt_frost.png" alt="network" width="450"/>
+  <img src="../assests/sync_avg_mse_comparision_addopt_frost.png" alt="network" width="450"/>
 </p>
