@@ -19,9 +19,8 @@ The following section describes which file does what in breif.
 
 In this secton, we show the convergence plots for all algorithms proposed in above section `Algorithms`
 
-![pushsum](../assests/sync_plots/sync_pushsum.png "pushsum") ![subgradient](../assests/sync_plots/sync_pushsum.png "subgradientpush")
 <!-- Push sum consensus -->
-<p float="middle"">
+<p float="middle">
   <img src="../assests/sync_plots/sync_pushsum.png" alt="network" width="500"/>
   <img src="../assests/sync_plots/sync_subgradpush.png" alt="network" width="500"/>
   <img src="../assests/sync_plots/sync_addopt.png" alt="network" width="500"/>
@@ -35,6 +34,6 @@ In this secton, we show the convergence plots for all algorithms proposed in abo
 The following figure plots the comparision of average mean-square error between ADD-OPT and FROST algorithms.
 
 <!-- Residual plot comparision between ADD-OPT and FROST -->
-<p float="middle"">
+<p float="middle">
   <img src="../assests/sync_plots/sync_avg_mse_comparision_addopt_frost.png" alt="network" width="600"/>
 </p>
