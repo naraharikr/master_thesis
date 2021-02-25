@@ -27,7 +27,7 @@ The outputs of the research are to study,
 
 ### System Requirements
 
-The algorithms are developed with `MATLAB (R2020b)` and tested on `Windows`platform. `MATLAB` is sufficient enough for the execution of the scripts, preferably `R2020a` or `R2020b`.  The back-compatibility has not been done if you're using the previous version of the software.  Also, the evaluation of algorithms has been tested only on the Windows platform at the moment.  In case of issues in Linux or MAC kindly raise the query or contact me at `narahari.kasagattaramesh@aalto.fi`
+The algorithms are developed with `MATLAB (R2020b)` and tested on `Windows`platform. `MATLAB` is sufficient enough for the execution of the scripts, preferably `R2020a` or `R2020b`.  The back-compatibility has not been done if you're using the previous version of the software.  Also, the evaluation of algorithms has been tested only on the Windows platform at the moment.  In case of issues in Linux, kindly comment it back or contact me at `narahari.kasagattaramesh@aalto.fi`
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -46,10 +46,10 @@ Change the working directory to the path where code is stored and run the requir
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## DISCLAIMER
-This is an ongoing part of my Master Thesis at Aalto University.  The Master thesis is being supervised by `[Themistoklis Charalambous](https://themistoklis.org/), Associate Professor, Aalto University`.  Also, he heads [`Distributed and Networked Control Systems`](https://www.aalto.fi/en/department-of-electrical-engineering-and-automation/distributed-and-networked-control-systems) research group, which focuses on blending control theory, communication theory and information theory.  The master thesis focuses primalrily to reproduce the distributed optimisation algorithms proposed in research paper as mentioned in `Reference Work`.
+This is an ongoing part of my Master Thesis at Aalto University.  The Master thesis is being supervised by [`Themistoklis Charalambous`](https://themistoklis.org/), `Associate Professor, Aalto University`.  Also, he heads [`Distributed and Networked Control Systems`](https://www.aalto.fi/en/department-of-electrical-engineering-and-automation/distributed-and-networked-control-systems) research group, which focuses on blending control theory, communication theory and information theory.  
+
+I am being part of the research group for my master thesis which focuses primalrily to reproduce the distributed optimisation algorithms proposed in research paper as mentioned in `Reference Work` and to extend the implementaion of `ADD-OPT (Section III-B3)` and `FROST (Section IV-A)` for asynchronous networks.  Study and understanding of Convergence analysis is not included in the scope of the thesis work.
 
 ### Reference Work
 
-The aim to study `Xin, R., Xi, C. & Khan, U. [FROST—Fast row-stochastic optimization with uncoordinated step-sizes](https://doi.org/10.1186/s13634-018-0596-y). EURASIP J. Adv. Signal Process. 2019, 1 (2019)` reserach journal and implment `Section B-III` and `Section IV-A`, which is ADD-OPT and FROST algorithms for synchronous networks respectively.  
-
-Implementation of same algorithms to asynchronous networks would be an extension to this work.  Also, it will be the novel contribution to master thesis.
+`Xin, R., Xi, C. & Khan, U. [FROST—Fast row-stochastic optimization with uncoordinated step-sizes](https://doi.org/10.1186/s13634-018-0596-y). EURASIP J. Adv. Signal Process. 2019, 1 (2019)`
