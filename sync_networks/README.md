@@ -30,7 +30,8 @@ In this secton, we show the convergence plots for all algorithms proposed in abo
   <img src="../assests/sync_plots/sync_frost.png" alt="network" width="500"/>
 </p>
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-## Residual plot
+
+## Residual Plots
 
 The following figure plots the comparision of average mean-square error between ADD-OPT and FROST algorithms.
 
