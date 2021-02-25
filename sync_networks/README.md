@@ -1,35 +1,55 @@
-# Implementation of Distributed consensus using doubly/column stocahtic weights and synchronous update of states
+# Distributed Optimization: Synchronous Networks
 
-Synchronous networks are the multi-agent netwroks where each agent is updates their information synchronously to solve a distributed optimization problem.
+All the algorithms described here, implements consensus algorithms and achieves convergence for given distributed network.  These algorithms are constrained to no-delay scenarious i.e, all the agents are assumed to comuunicate synchronously without any dealy in the information.  Also, the graph topology is time-invariant.
 
-[pushsum.m](https://github.com/naraharikr/master_thesis/blob/main/column_stochastic_algorithms/pushsum.m) implements Pushsum consensus algorithm as in **(Section III - B1)**
+## Algorithms
 
-[subgrad_push.m](https://github.com/naraharikr/master_thesis/blob/main/column_stochastic_algorithms/subgrad_push.m) implements Subgradient-Push consensus algorithm as in **(Section III - B2)**
+The following section describes which file does what in breif.
 
-[addopt.m](https://github.com/naraharikr/master_thesis/blob/main/column_stochastic_algorithms/appopt.m) implements ADDOPT/DIGing consensus as in **(Section III - B3)**
-
-
-## Sneakpeak into results 
-
-### Algorithms using Column-stochastic Weights
-
-### Pushsum Consensus
-
-![Push-sum consensus](https://github.com/naraharikr/master_thesis/blob/main/Results/column_stochastic/pushsum_consensus.png)
-
-### Subgradient-Push Consensus
-
-![Subgradient-push consensus](https://github.com/naraharikr/master_thesis/blob/main/Results/column_stochastic/subgradient_push.png)
-
-### ADDOPT/Push-DIGing Consensus
-
-![ADDOPT/Push-DIGing consensus](https://github.com/naraharikr/master_thesis/blob/main/Results/column_stochastic/addopt.png)
+* [`sync_pushsum.m`](sync_pushsum.m) implements pushsum consensus algorithm in synchronous network setup
+* [`sync_subgradpush.m`](sync_subgradpush.m) implements subgradient push consensus algorithm in synchronous network setup
+* [`sync_appopt.m`](sync_appopt.m) implements ADD-OPT consensus algorithm in synchronous network setup
+* [`sync_projsubgrad.m`](sync_projsubgrad.m) implements projected subgradient consensus algorithm in synchronous network setup
+* [`sync_frost.m`](sync_frost.m) implements FROST consensus algorithm in synchronous network setup
+* ['compute_gradient.m'](compute_gradient) function handle to compute the gradient of function at x
 
 
-*PS: As the thesis is still in the initial stages, the local function "f" at each agent is considered as a Quadratic cost function and impmentation follows the same.  Not distributed logistic regression problem as stated in Section VI - Numerical Results*
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Convergence Plots
 
-<img src="http://latex.codecogs.com/gif.latex?\dpi{110}&space;\textit{f(x)}&space;=&space;\frac{1}{2}\alpha&space;\left&space;(&space;x&space;-&space;x_0\right&space;)^{2}" title="http://latex.codecogs.com/gif.latex?\dpi{110} \textit{f(x)} = \frac{1}{2}\alpha \left ( x - x_0\right )^{2}" />
+In this secton, we show the convergence plots for all algorithms proposed in above section `Algorithms`
 
-*x0 = initial value at each agent i (n x 1),*
+**Push-sum Algorithm**
+<!-- Push sum consensus -->
+<p align="left"">
+  <img src="./assests/sync_plots/sync_pushsum.png" alt="network" width="300"/>
+</p>
 
-*n = number of agents*
+**Subgradient-Push Algorithm**
+<!-- Subgradient-Push consensus -->
+<p align="right"">
+  <img src="./assests/sync_plots/sync_subgradpush.png" alt="network" width="300"/>
+</p>
+
+**ADD-OPT Algorithm**
+<!-- ADD-OPT consensus -->
+<p align="left"">
+  <img src="./assests/sync_plots/sync_addopt.png" alt="network" width="300"/>
+</p>
+
+**FROST Algorithm**
+<!-- FROST consensus -->
+<p align="right"">
+  <img src="./assests/sync_plots/sync_frost.png" alt="network" width="300"/>
+</p>
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Residual plot
+
+The following figure plots the comparision of average mean-square error between ADD-OPT and FROST algorithms.
+
+<!-- Residual plot comparision between ADD-OPT and FROST -->
+<p align="centre"">
+  <img src="./assests/sync_avg_mse_comparision_addopt_frost.png" alt="network" width="450"/>
+</p>

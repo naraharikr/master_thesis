@@ -1,24 +1,26 @@
-# Implementation of Distributed consensus using row stocahtic weights and synchronous update of states
+# Distributed Optimization: Asynchronous Networks
 
-Synchronous networks are the multi-agent netwroks where each agent is updates their information synchronously to solve a distributed optimization problem.
+All the algorithms described here, implements consensus algorithms and achieves convergence for given distributed network.  These algorithms are focused on network with dealys i.e, some/all the agents are exchanging inforamtion at different time instances with dealys.  Also, the graph topology is time-variant.
 
-[projected_subgrad.m](https://github.com/naraharikr/master_thesis/blob/main/row_stochastic_algorithms/projected_subgrad.m) implements Projected subgradient consensus algorithm as in **(Section IV - Eq.(9a)-(9b))**
+## Algorithms
+
+The following section describes which file does what in breif.
+
+* [`async_appopt.m`](async_appopt.m) implements ADD-OPT consensus algorithm in asynchronous network setup
+* ['compute_gradient.m'](compute_gradient) function handle to compute the gradient of function at x
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Convergence Plots
+
+In this secton, we show the convergence plots for all algorithms proposed in above section `Algorithms`
 
 
-## Sneakpeak into results 
-
-### Algorithms using Row-stochastic Weights
-
-### Projected Subgradient Consensus
-
-![Projected Subgradient consensus](https://github.com/naraharikr/master_thesis/blob/main/Results/row_stochastic/projected_subgrad.png)
 
 
 
-*PS: As the thesis is still in the initial stages, the local function "f" at each agent is considered as a Quadratic cost function and impmentation follows the same.  Not distributed logistic regression problem as stated in Section VI - Numerical Results*
 
-<img src="http://latex.codecogs.com/gif.latex?\dpi{110}&space;\textit{f(x)}&space;=&space;\frac{1}{2}\alpha&space;\left&space;(&space;x&space;-&space;x_0\right&space;)^{2}" title="http://latex.codecogs.com/gif.latex?\dpi{110} \textit{f(x)} = \frac{1}{2}\alpha \left ( x - x_0\right )^{2}" />
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Residual plot
 
-*x0 = initial value at each agent i (n x 1),*
+The following figure plots the comparision of average mean-square error between ADD-OPT and FROST algorithms.
 
-*n = number of agents*

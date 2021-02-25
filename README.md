@@ -39,21 +39,6 @@ The algorithms are developed with `MATLAB (R2020b)` and tested on `Windows`platf
 
 **NOTE: Out of above algorithms pushsum, subgradient-push, ADD-OPT needs column-stochastic weight matrix, while projected subgradient and FROST uses row-stochastic weights.  This information is also available in each `.m` file.  Be careful to check these requirements if you change weight matrix.**
 
-### Algorithms
-
-The following section describes which file does what in breif.
-
-**Synchronous Networks**
-* [`sync_pushsum.m`](sync_networks/sync_pushsum.m) implements pushsum consensus algorithm in synchronous network setup
-* [`sync_subgradpush.m`](sync_networks/sync_subgradpush.m) implements subgradient push consensus algorithm in synchronous network setup
-* [`sync_appopt.m`](sync_networks/sync_appopt.m) implements ADD-OPT consensus algorithm in synchronous network setup
-* [`sync_projsubgrad.m`](sync_networks/sync_projsubgrad.m) implements projected subgradient consensus algorithm in synchronous network setup
-* [`sync_frost.m`](sync_networks/sync_frost.m) implements FROST consensus algorithm in synchronous network setup
-
-**Asynchronous Networks**
-* [`async_appopt.m`](async_networks/async_appopt.m) implements ADD-OPT consensus algorithm in asynchronous network setup
-
-
 ### Running algorithms
 
 Change the working directory to the path where code is stored and run the required `.m` file.
