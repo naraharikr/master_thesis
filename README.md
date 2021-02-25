@@ -11,7 +11,7 @@ In the presented distributed network, *n* agents caters to solve a distributed p
 \text{P1}: \quad\underset{\mathbf{x}}{\min} F(\mathbf{x})\triangleq\frac{1}{n}\sum\limits_{i=1}^{n}f_{i}(\mathbf{x}),
 </pre>
 
-where each agent locally solves private cost function $`f_i(x)`$ and communicates to it's out neighbours to find the global minimizer of aggregate cost, $`F(x)`$.
+where each agent locally solves private cost function $[f_i(x)]$ and communicates to it's out neighbours to find the global minimizer of aggregate cost, $`F(x)`$.
 
 The private cost function $`f_i(x)`$ used at each agent is a `Distributed Quadratic cost function` defined as,
 
