@@ -11,7 +11,7 @@ The following section describes which file does what in breif.
 * [`sync_appopt.m`](sync_appopt.m) implements ADD-OPT consensus algorithm in synchronous network setup
 * [`sync_projsubgrad.m`](sync_projsubgrad.m) implements projected subgradient consensus algorithm in synchronous network setup
 * [`sync_frost.m`](sync_frost.m) implements FROST consensus algorithm in synchronous network setup
-* ['compute_gradient.m'](compute_gradient) function handle to compute the gradient of function at x
+* [`compute_gradient.m`](compute_gradient) function handle to compute the gradient of function at x
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -23,11 +23,12 @@ In this secton, we show the convergence plots for all algorithms proposed in abo
 <p float="middle">
   <img src="../assests/sync_plots/sync_pushsum.png" alt="network" width="500"/>
   <img src="../assests/sync_plots/sync_subgradpush.png" alt="network" width="500"/>
+</p>
+
+<p float="middle">
   <img src="../assests/sync_plots/sync_addopt.png" alt="network" width="500"/>
   <img src="../assests/sync_plots/sync_frost.png" alt="network" width="500"/>
 </p>
-
-
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Residual plot
 
@@ -35,5 +36,5 @@ The following figure plots the comparision of average mean-square error between 
 
 <!-- Residual plot comparision between ADD-OPT and FROST -->
 <p float="middle">
-  <img src="../assests/sync_plots/sync_avg_mse_comparision_addopt_frost.png" alt="network" width="600"/>
+  <img src="../assests/sync_plots/sync_avg_mse_comparision_addopt_frost.png" alt="network" width="550"/>
 </p>

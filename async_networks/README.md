@@ -7,7 +7,7 @@ All the algorithms described here, implements consensus algorithms and achieves 
 The following section describes which file does what in breif.
 
 * [`async_appopt.m`](async_appopt.m) implements ADD-OPT consensus algorithm in asynchronous network setup
-* ['compute_gradient.m'](compute_gradient) function handle to compute the gradient of function at x
+* [`compute_gradient.m`](compute_gradient) function handle to compute the gradient of function at x
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Convergence Plots

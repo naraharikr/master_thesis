@@ -46,10 +46,10 @@ Change the working directory to the path where code is stored and run the requir
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## DISCLAIMER
-This is an ongoing part of my Master Thesis at Aalto University.  The Master thesis is being supervised by [`Themistoklis Charalambous`](https://themistoklis.org/), `Associate Professor, Aalto University`.  Also, he heads [`Distributed and Networked Control Systems`](https://www.aalto.fi/en/department-of-electrical-engineering-and-automation/distributed-and-networked-control-systems) research group, which focuses on blending control theory, communication theory and information theory.  
+This is an ongoing part of my Master Thesis at Aalto University.  The Master thesis is being supervised by [Themistoklis Charalambous](https://themistoklis.org/), Associate Professor, Aalto University.  Also, he heads [Distributed and Networked Control Systems](https://www.aalto.fi/en/department-of-electrical-engineering-and-automation/distributed-and-networked-control-systems) research group, which focuses on blending control theory, communication theory and information theory.  
 
 I am being part of the research group for my master thesis which focuses primalrily to reproduce the distributed optimisation algorithms proposed in research paper as mentioned in `Reference Work` and to extend the implementaion of `ADD-OPT (Section III-B3)` and `FROST (Section IV-A)` for asynchronous networks.  Study and understanding of Convergence analysis is not included in the scope of the thesis work.
 
 ### Reference Work
 
-`Xin, R., Xi, C. & Khan, U. [FROST—Fast row-stochastic optimization with uncoordinated step-sizes](https://doi.org/10.1186/s13634-018-0596-y). EURASIP J. Adv. Signal Process. 2019, 1 (2019)`
+Xin, R., Xi, C. & Khan, U. [`FROST—Fast row-stochastic optimization with uncoordinated step-sizes`](https://doi.org/10.1186/s13634-018-0596-y). EURASIP J. Adv. Signal Process. 2019, 1 (2019)
