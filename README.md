@@ -6,18 +6,18 @@ In the presented work, we study the distributed optimization over directed graph
 
 In the presented distributed network, *n* agents caters to solve a distributed problem in `P1`.
 
-<pre xml:lang="latex">\sqrt{2}</pre>
-<pre xml:lang="latex">
-\text{P1}: \quad\underset{\mathbf{x}}{\min} F(\mathbf{x})\triangleq\frac{1}{n}\sum\limits_{i=1}^{n}f_{i}(\mathbf{x}),
-</pre>
+<p align="center"">
+  <img src="https://latex.codecogs.com/gif.latex?\textbf{P1}:&space;\quad\underset{\mathbf{x}}{\min}&space;F(\mathbf{x})\triangleq\frac{1}{n}\sum\limits_{i=1}^{n}f_{i}(\mathbf{x})" title="\textbf{P1}: \quad\underset{\mathbf{x}}{\min} F(\mathbf{x})\triangleq\frac{1}{n}\sum\limits_{i=1}^{n}f_{i}(\mathbf{x})" />
+</p>
 
-where each agent locally solves private cost function $[f_i(x)]$ and communicates to it's out neighbours to find the global minimizer of aggregate cost, $`F(x)`$.
+where each agent locally solves private cost function $$`f_i(x)`$$ and communicates to it's out neighbours to find the global minimizer of aggregate cost, $$`F(x)`$$.
 
-The private cost function $`f_i(x)`$ used at each agent is a `Distributed Quadratic cost function` defined as,
+The private cost function $$`f_i(x)`$$ used at each agent is a `Distributed Quadratic cost function` defined as,
 
-``` math
-f_i(x) = \frac{1}{2}{\alpha}_i(x-{\rho}_i)^{2}
-```
+<p align="center"">
+  <img src="https://latex.codecogs.com/gif.latex?f_i(x)&space;=&space;\frac{1}{2}{\alpha}_i(x-{\rho}_i)^{2}" title="f_i(x) = \frac{1}{2}{\alpha}_i(x-{\rho}_i)^{2}" />
+</p>
+
 ### Research Objectives
 
 The ouputs of the reserach is to study,
@@ -44,14 +44,14 @@ The algorithms are developed with `MATLAB (R2020b)` and tested on `Windows`platf
 The following section describes which file does what in breif.
 
 **Synchronous Networks**
-* [`sync_pushsum.m`](sync_networks/sync_pushsum.m) implements pushsum consensus algorithm in synchronous network setup *(weight matrix should be column-stochastic)*
-* [`sync_subgradpush.m`](sync_networks/sync_subgradpush.m) implements subgradient push consensus algorithm in synchronous network setup *(weight matrix should be column-stochastic)*
-* [`sync_appopt.m`](sync_networks/sync_appopt.m) implements ADD-OPT consensus algorithm in synchronous network setup *(weight matrix should be column-stochastic)*
-* [`sync_projsubgrad.m`](sync_networks/sync_projsubgrad.m) implements projected subgradient consensus algorithm in synchronous network setup *(weight matrix should be row-stochastic)*
-* [`sync_frost.m`](sync_networks/sync_frost.m) implements FROST consensus algorithm in synchronous network setup *(weight matrix should be row-stochastic)*
+* [`sync_pushsum.m`](sync_networks/sync_pushsum.m) implements pushsum consensus algorithm in synchronous network setup
+* [`sync_subgradpush.m`](sync_networks/sync_subgradpush.m) implements subgradient push consensus algorithm in synchronous network setup
+* [`sync_appopt.m`](sync_networks/sync_appopt.m) implements ADD-OPT consensus algorithm in synchronous network setup
+* [`sync_projsubgrad.m`](sync_networks/sync_projsubgrad.m) implements projected subgradient consensus algorithm in synchronous network setup
+* [`sync_frost.m`](sync_networks/sync_frost.m) implements FROST consensus algorithm in synchronous network setup
 
 **Asynchronous Networks**
-* [`async_appopt.m`](async_networks/async_appopt.m) implements ADD-OPT consensus algorithm in asynchronous network setup *(weight matrix should be column-stochastic)*
+* [`async_appopt.m`](async_networks/async_appopt.m) implements ADD-OPT consensus algorithm in asynchronous network setup
 
 
 ### Running algorithms
@@ -59,7 +59,7 @@ The following section describes which file does what in breif.
 Change the working directory to the path where code is stored and run the required `.m` file.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-### Disclaimer
+## DISCLAIMER
 This is an ongoing part of my Master Thesis at Aalto University.  The Master thesis is being supervised by [`Themistoklis Charalambous`](https://themistoklis.org/), `Associate Professor, Aalto University`.  Also, he heads [`Distributed and Networked Control Systems`](https://www.aalto.fi/en/department-of-electrical-engineering-and-automation/distributed-and-networked-control-systems) research group, which focuses on blending control theory, communication theory and information theory.  The master thesis focuses primalrily to reproduce the distributed optimisation algorithms proposed in research paper as mentioned in `Reference Work`.
 
 ### Reference Work
