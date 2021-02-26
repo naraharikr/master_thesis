@@ -33,9 +33,19 @@ The algorithms are developed with `MATLAB (R2020b)` and tested on `Windows`platf
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Folder structure
 
+The project is organized into three folders, namely:
+
 * [`sync_networks`] contains implementation of `push-sum`, `subgradient-push`, `ADD-OPT`,` Projected Subgradient`and `FROST` algorithms with synchronous networks
 * [`async_networks`] contains an implementation of `ADD-OPT` and `FROST` algorithms with asynchronous networks
-* [`assests`] contains plots and figures in .eps and .png formats
+* [`assets`] contains `plots` containing convergence plots (.png format) & `matvar` having matlab workspace variables
+
+## Scripts
+
+The following section describes the `.m` files and `function`s used in the project.
+
+* [`compare_residual_plots.m`](compare_residual_plots) script generating residual plot comparision
+* [`compute_gradient.m`](compute_gradient) function handle to compute the gradient of function at x
+
 
 **NOTE: Out of above algorithms pushsum, subgradient-push, ADD-OPT needs column-stochastic weight matrix, while projected subgradient and FROST uses row-stochastic weights.  This information is also available in each `.m` file.  Be careful to check these requirements if you change weight matrix.**
 

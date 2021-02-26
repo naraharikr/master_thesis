@@ -3,7 +3,13 @@
 % Implementation of Projected subgradient consensus algorithm over
 % directed graphs
 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+% setup environment and add directory to path to access common functions
+clc; clear; close all;
+access_func_directory = fileparts(pwd);
+addpath(access_func_directory);
+
 %% START: Projected Subgradient Algorithm
 
 clc; clear; close all;

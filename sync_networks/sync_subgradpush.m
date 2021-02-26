@@ -2,7 +2,13 @@
 %
 % Implementation of Subgradient-Push consensus algorithm
 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+% setup environment and add directory to path to access common functions
+clc; clear; close all;
+access_func_directory = fileparts(pwd);
+addpath(access_func_directory);
+
 %% START: Subgradient-Push Algorithm
 
 clc; clear; close all;
@@ -31,7 +37,7 @@ gradientEstimator_arxiv = zeros(n,1);
 
 % consensus value = optimal_x
 average_x = mean(x);
-optimal_x = sum(alpha.*x0)/sum(alpha);
+optimal_x = sum(alpha.*x0)/sum(alpha)
 
 %% Subgradient-Push algorithm
     itr = 2000; step = 1;
@@ -45,10 +51,6 @@ optimal_x = sum(alpha.*x0)/sum(alpha);
         gradientEstimator_arxiv=[gradientEstimator_arxiv gradientEstimator]; 
         subgrad_Z=[subgrad_Z z];
         step = 1/i;
-        % update alpha by backtrace line search
-        % Xk = double(subs(f, {y,beta,rho}, {x,alpha,a}));
-        % dk = double(subs(df, {y,beta,rho}, {x,alpha,a}));
-        % step = backtrack(step,Xk,dk,f(y,beta,rho)); 
     end
     
 %% Plots

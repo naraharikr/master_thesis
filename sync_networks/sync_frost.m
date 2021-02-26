@@ -3,24 +3,24 @@
 % Implementation of FROST (Fast Row-stochastic Optimisation with 
 % uncordinated STep-sizes) over directed graphs
 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%% START: FROST Algorithm
-
+% setup environment and add directory to path to access common functions
 clc; clear; close all;
+access_func_directory = fileparts(pwd);
+addpath(access_func_directory);
+
+%% START: FROST Algorithm
 
 % Row-stochastic Weight Matrix
 % A = [0.5 0.25 0 0 0.25 0;0.25 0.5 0.25 0 0 0;0.5 0 0.5 0 0 0;
 %      0.25 0 0.25 0.25 0 0.25;0 0 0 0 0.5 0.5;0 0 0.25 0.25 0 0.5];
-% A = [0.3333 0.3333 0.3333 0 0; 0 0.3333 0.3333 0 0.3333; 0 0 0.5 0 0.5; 
-%      0.5 0 0 0.5 0; 0 0 0.3333 0.3333 0.3333];
 A = [1/3 1/3 1/3 0 0; 0 1/3 1/3 0 1/3; 0 0 1/2 0 1/2; 1/2 0 0 1/2 0; 0 0 1/3 1/3 1/3];
 n = length(A);
-x = [4 1 5 2 3]';
-% x = [3 2 5 6 1 7]';
+x = [4 1 5 2 3]';%[3 2 5 6 1 7]';
 y = eye(n);
 z = x./diag(y);
-alpha = [2 4 5 3 1]';
-% alpha = [1 3 2 1 4 1]';
+alpha = [2 4 5 3 1]';%[1 3 2 1 4 1]';
 
 % initialization
 x_0 = x; x_arxiv = x; 
@@ -42,7 +42,7 @@ average_x = mean(x);
 optimal_x = sum(alpha.*x_0)/sum(alpha)
 
 %% FROST Algorithm
-itr = 100;
+itr = 200;
 % constant but uncoordianted stepsize
 step = 0.005;
 for i=1:itr
@@ -59,8 +59,8 @@ for i=1:itr
     z_arxiv = [z_arxiv z];
 end
 %
-%
 % Average of residuals at each agent
+% 
 residual_arxiv = zeros(1,itr);
 for u=1:itr
     residual_sum=0;
@@ -70,8 +70,9 @@ for u=1:itr
     end
     residual_arxiv(u)=residual_sum/n;
 end
-frost_residual_arxiv = residual_arxiv;
-save('frost_residual_arxiv');
+sync_frost_residual_arxiv = residual_arxiv;
+save('../assets/matvar/sync_frost_residual_arxiv');
+
 %% Convergence Results & Residual Plots
 set(0, 'DefaultTextInterpreter', 'latex')
 set(gca, 'TickLabelInterpreter', 'latex')
@@ -108,4 +109,5 @@ title('FROST Implementation with Quadratic Cost Function');
 %% Display consensus result
 fprintf('\nFROST Consensus result\n');
 display(x);
+
 %% END: FROST Algorithm

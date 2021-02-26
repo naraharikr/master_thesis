@@ -3,7 +3,13 @@
 % Implementation of ADDOPT/Push-DIGing consensus algorithm
 % with Synchronous networks 
 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+% setup environment and add directory to path to access common functions
+clc; clear; close all;
+access_func_directory = fileparts(pwd);
+addpath(access_func_directory);
+
 %% START: ADDOPT/Push-DIGing Algorithm
 
 clc; clear; close all;
@@ -60,8 +66,9 @@ for u=1:itr
     end
     residual_arxiv(u)=residual_sum/n;
 end
-addopt_residual_arxiv = residual_arxiv;
-save('addopt_residual_arxiv');
+sync_addopt_residual_arxiv = residual_arxiv;
+save('../assets/matvar/sync_addopt_residual_arxiv');
+
 %% Plots
 set(0, 'DefaultTextInterpreter', 'latex')
 set(gca, 'TickLabelInterpreter', 'latex')
