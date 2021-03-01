@@ -18,12 +18,13 @@ The following section describes which file does what in breif, in synchronous ne
 
 In this secton, we show the convergence plots for all algorithms proposed in above section `Algorithms`
 
-<!-- Push sum consensus -->
+<!-- Push sum and Subgradient-push consensus-->
 <p float="middle">
   <img src="../assets/plots/sync_pushsum.png" alt="network" width="500"/>
   <img src="../assets/plots/sync_subgradpush.png" alt="network" width="500"/>
 </p>
 
+<!-- ADD-OPT and FROST consensus-->
 <p float="middle">
   <img src="../assets/plots/sync_addopt.png" alt="network" width="500"/>
   <img src="../assets/plots/sync_frost.png" alt="network" width="500"/>

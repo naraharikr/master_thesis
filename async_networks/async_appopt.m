@@ -1,91 +1,107 @@
 %
 %
 % Implementation of ADDOPT/Push-DIGing consensus algorithm
-% with Synchronous networks 
+% with Asynchronous networks 
 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%% START: ADDOPT/Push-DIGing Algorithm (Asynchronous N/w)
+% setup environment and add directory to path to access common functions
+clc; clear; close all;
+access_func_directory = fileparts(pwd);
+addpath(access_func_directory);
+
+%% START: Asynchronous ADD-OPT Algorithm
 
 clc; clear; close all;
 % column-stochastic weight matrix
-% B = [1/3  0   0  1/2  0;
-%      1/3 1/3  0   0   0;
-%      1/3 1/3 1/2  0  1/3;
-%       0   0   0  1/2 1/3;
-%       0  1/3 1/2  0  1/3];
-B = [0.5 0.5 0; 0 0.5 0.5; 0.5 0 0.5];
-% initialization
+B = [1/3 0 0 1/2 0; 1/3 1/3 0 0 0; 1/3 1/3 1/2 0 1/3; 0 0 0 1/2 1/3; 0 1/3 1/2 0 1/3];
 n = length(B);
-x = randi([1 10],n,1);%[4 1 5 2 3]';
-v = ones(n,1);
-y = zeros(n,1); 
-z = v./x; zd_arxiv = z;
+xd = [4 1 5 2 3]';
+vd = ones(n,1);
+yd = zeros(n,1);
+alpha = [2 4 5 3 1]';
+zd = vd./xd;
 
-% initialization of asynchronous variables
-delay = 1;
-xd_k = [x' zeros(1,n*delay)]';
-vd_k = [v' zeros(1,n*delay)]';
+% initialization for network with delays
+maxDelay = 1;
+vd_k = [vd' zeros(1,n*maxDelay)]';
+xd_k = [xd' zeros(1,n*maxDelay)]';
+yd_k = [yd' zeros(1,n*maxDelay)]';
+xd_0 = xd_k; xd_arxiv = xd;
+yd_0 = yd_k; yd_arxiv = yd;
+zd_arxiv = zd; vd_arxiv = vd;
 
-B_aug = zeros(n+n*delay);
-B_diag = diag(B);
-for i=1:length(B)
-    B_aug(i,i) = B(
+% initialization of cost function
+n_aug = n+(n*maxDelay);
+alpha = [alpha' zeros(1,n*maxDelay)]';
+gradientEstimatordelay = zeros(n_aug,1);
+for m=1:n_aug
+    yd_0(m)=compute_gradient(xd_0(m),xd_0(m),alpha(m));
 end
-aug_diag = diag(diag(B));
-%B_aug = B(n+n*delay, n+n*delay);
-% B(n+delay,n+delay) = 0;
-
-% for j=1:100
-%     vd_k = B*vd_k;
-%     xd_k = B*xd_k;
-%     zd_k = xd_k./vd_k;
-%     zd_arxiv = [zd_arxiv zd_k(1:n)];
-% end
-
-% plot(0:j,zd_arxiv);
-% initialization for cost function
-% alpha = [2 4 5 3 1]';
-% x_0 = x; y0 = y;
-% z_arxiv = z;
-% gradientEstimator = zeros(n,1);
-% for i=1:n
-%     y0(i)=compute_gradient(x_0(i),x_0(i),alpha(i));
-% end
-% gradientEstimator_arxiv=y0;
+gradientEstimatordelay_arxiv=yd_0;
 
 % consensus value
-% average_x = mean(x);
-% optimal_x = sum(alpha.*x_0)/sum(alpha)
+average_x = mean(xd_0);
+optimal_x = sum(alpha.*xd_0)/sum(alpha)
 
-%% ADD_OPT/Push-DIGing
-%     itr = 200; step = 0.01;
-%     for i=1:itr
-%         v = B*v;
-%         x = B*x - step*y;
-%         z = x./v; 
-%         z_arxiv=[z_arxiv z];
-%         for j=1:n
-%             gradientEstimator(j)=compute_gradient(z(j),x_0(j),alpha(j));
-%         end
-%         y = B*y+gradientEstimator-gradientEstimator_arxiv(:,end);
-%         gradientEstimator_arxiv=[gradientEstimator_arxiv gradientEstimator];
-%     end
+%% ADD-OPT (Async) Algorithm
+    itr = 200; step=0.01;
+    for i=1:itr
+        % create weight matrix with delay
+        B_aug = aug_weight_matrix(B,maxDelay);
+
+        vd_k = B_aug*vd_k;
+%         diag_vd_k = diag(vd_k);
+        vd_arxiv = [vd_arxiv vd_k(1:n)];
+        
+        xd_k = B_aug*xd_k - step*yd_k;
+        xd_arxiv = [xd_arxiv xd_k(1:n)];
+        
+%         zd_k = inv(diag_vd_k)*xd_k;
+        zd_k = xd_k./vd_k;
+        zd_arxiv = [zd_arxiv zd_k(1:n)];
+        
+        for j=1:n_aug
+            gradientEstimatordelay(j)=compute_gradient(zd_k(j),xd_0(j),alpha(j));
+        end
+        yd_k = B_aug*yd_k+gradientEstimatordelay-gradientEstimatordelay_arxiv(:,end);
+        gradientEstimatordelay_arxiv=[gradientEstimatordelay_arxiv gradientEstimatordelay];
+    end
+    
+    async_addopt_residual_arxiv=compute_residual(zd_arxiv,optimal_x,'async_addopt');
 
 %% Plots
-% set(0, 'DefaultTextInterpreter', 'latex')
-% set(gca, 'TickLabelInterpreter', 'latex')
-% 
-% figure(1); hold on; box on;
-% plot(0:itr,z_arxiv);
-% xl=xlabel('Number of iterations','fontsize',14); set(xl, 'Interpreter', 'latex');
-% yl=ylabel('Ratio $z_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
-% title('ADD-OPT/Push-DIGing: Synchronous networks'); 
-% plot([0,itr],[optimal_x,optimal_x], 'r-.')
-% plot([0,itr],[average_x,average_x], 'b-.')
-% hold off;
-% 
-% % Display optimal_x and final z
-% fprintf('\nADD_OPT/Push-DIGing Consensus result\n');
-% display(z);
-%  
-%% END: ADDOPT/Push-DIGing Algorithm
+set(0, 'DefaultTextInterpreter', 'latex')
+set(gca, 'TickLabelInterpreter', 'latex')
+
+figure(1); hold on; box on;
+plot(0:itr,vd_arxiv);
+xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
+yl=ylabel('$v_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
+
+figure(2); hold on; box on;
+plot(0:itr,xd_arxiv);
+xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
+yl=ylabel('$x_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
+
+figure(3); hold on; box on;
+plot(0:itr,zd_arxiv);
+xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
+yl=ylabel('Ratio $z_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
+title('ADD-OPT Algorithm: Asynchronous networks'); 
+plot([0,itr],[optimal_x,optimal_x], 'r-.')
+plot([0,itr],[average_x,average_x], 'b-.')
+
+figure(4); hold off; box on;
+plot(0:itr,async_addopt_residual_arxiv);
+set(gca, 'YScale', 'log')
+xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
+yl=ylabel('$\frac{1}{n}\sum_{i=1}^{n}(z^{i}_k - x^{*})^{2}$ at each iteration','fontsize',14); 
+set(yl, 'Interpreter', 'latex');
+title('ADDOPT Implementation with Quadratic Cost Function');
+
+% Display optimal_x and final z
+fprintf('\nADD_OPT/Push-DIGing Consensus result\n');
+display(zd_k(1:n));
+
+%% END: Asynchronous ADD-OPT Algorithm

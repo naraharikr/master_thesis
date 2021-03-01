@@ -39,7 +39,7 @@ set(gca, 'TickLabelInterpreter', 'latex')
 
 figure(1); hold on; box on;
 plot(0:itr,pushsum_z);
-xl=xlabel('Number of iterations','fontsize',14); set(xl, 'Interpreter', 'latex');
+xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
 yl=ylabel('Ratio $z_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
 title('Pushsum Consensus: Synchronous networks'); 
 plot([0,itr],[average_x,average_x], 'b-.')

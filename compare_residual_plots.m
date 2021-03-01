@@ -42,7 +42,7 @@ set(gca, 'TickLabelInterpreter', 'latex')
 figure(1); hold on; box on;
 plot(1:endValue,sync_addopt_residual_arxiv,'b');
 plot(1:endValue,sync_frost_residual_arxiv,'r');
-set(gca, 'YScale', 'log')
+set(gca, 'YScale', 'log'); xlim([0 endValue]);
 xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
 yl=ylabel('Average MSE at each iteration','fontsize',14); set(yl, 'Interpreter', 'latex');
 title('Quadratic Cost Function, $f_i(x) = \frac{1}{2}{\alpha}_i(x-{\rho}_i)^{2}$');

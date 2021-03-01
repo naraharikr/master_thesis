@@ -44,34 +44,22 @@ optimal_x = sum(alpha.*x_0)/sum(alpha)
 %% FROST Algorithm
 itr = 200;
 % constant but uncoordianted stepsize
-step = 0.005;
-for i=1:itr
-    y = A*y;
-    imbalanceEliminator = [imbalanceEliminator diag(y)];
-    x = A*x - step*z_arxiv(:,end);
-    x_arxiv = [x_arxiv x];
-    for j=1:n
-        gradientEstimator(j)=compute_gradient(x(j),x_0(j),alpha(j));
+    step = 0.005;
+    for i=1:itr
+        y = A*y;
+        imbalanceEliminator = [imbalanceEliminator diag(y)];
+        x = A*x - step*z_arxiv(:,end);
+        x_arxiv = [x_arxiv x];
+        for j=1:n
+            gradientEstimator(j)=compute_gradient(x(j),x_0(j),alpha(j));
+        end
+        gradientEstimator_arxiv = [gradientEstimator_arxiv gradientEstimator];
+        z = A*z + (gradientEstimator_arxiv(:,end)./imbalanceEliminator(:,end))...
+                - (gradientEstimator_arxiv(:,i)./imbalanceEliminator(:,i));
+        z_arxiv = [z_arxiv z];
     end
-    gradientEstimator_arxiv = [gradientEstimator_arxiv gradientEstimator];
-    z = A*z + (gradientEstimator_arxiv(:,end)./imbalanceEliminator(:,end))...
-            - (gradientEstimator_arxiv(:,i)./imbalanceEliminator(:,i));
-    z_arxiv = [z_arxiv z];
-end
-%
-% Average of residuals at each agent
-% 
-residual_arxiv = zeros(1,itr);
-for u=1:itr
-    residual_sum=0;
-    for v=1:n
-        mean_square_error = (x_arxiv(v,u)-optimal_x)^2;
-        residual_sum = residual_sum + mean_square_error; 
-    end
-    residual_arxiv(u)=residual_sum/n;
-end
-sync_frost_residual_arxiv = residual_arxiv;
-save('../assets/matvar/sync_frost_residual_arxiv');
+    
+    sync_frost_residual_arxiv=compute_residual(x_arxiv,optimal_x,'sync_frost');
 
 %% Convergence Results & Residual Plots
 set(0, 'DefaultTextInterpreter', 'latex')
@@ -99,7 +87,7 @@ title('FROST (Directred Graphs): Synchronous networks');
 plot([0,itr],[0,0], 'r-.')
 
 figure(4); hold off; box on;
-plot(1:itr,residual_arxiv);
+plot(0:itr,sync_frost_residual_arxiv);
 set(gca, 'YScale', 'log')
 xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
 yl=ylabel('$\frac{1}{n}\sum_{i=1}^{n} (x^{i}_k - x^{*})^{2}$ (Avg. Mean-sqaure error)','fontsize',14); 

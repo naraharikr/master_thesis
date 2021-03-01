@@ -58,7 +58,7 @@ set(gca, 'TickLabelInterpreter', 'latex')
 
 figure(1); hold on; box on;
 plot(0:itr,x_arxiv);
-xl=xlabel('Number of iterations','fontsize',14); set(xl, 'Interpreter', 'latex');
+xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
 yl=ylabel('$x_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
 title('Projected Subgradient: Synchronous networks'); 
 plot([0,itr],[optimal_x,optimal_x], 'r-.')

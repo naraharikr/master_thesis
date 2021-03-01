@@ -1,4 +1,6 @@
 %% START
+function gFeval=compute_gradient(z,x0,alpha)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Compute the gradient of quadratic private cost function 
 % at each node
 %           fi(x) = 0.5*alpha*(x-x0)^2 
@@ -8,9 +10,7 @@
 %        alpha = RN
 %
 % OUTPUT: gFeval = gradient of fi(x) at z
-%
-%% Gradient computation
-function gFeval=compute_gradient(z,x0,alpha)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 n = length(x0);
 x = sym('x',[1 n]);
 
@@ -22,7 +22,5 @@ end
 gF = gradient(f,x);
 
 gFeval = subs(gF,x,z);
-%
-%
-%
+
 %% END

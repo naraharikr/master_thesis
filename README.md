@@ -30,14 +30,16 @@ The outputs of the research are to study,
 The algorithms are developed with `MATLAB (R2020b)` and tested on `Windows`platform. `MATLAB` is sufficient enough for the execution of the scripts, preferably `R2020a` or `R2020b`.  The back-compatibility has not been done if you're using the previous version of the software.  Also, the evaluation of algorithms has been tested only on the Windows platform at the moment.  In case of issues in Linux, kindly comment it back or contact me at `narahari.kasagattaramesh@aalto.fi`
 
 
+
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Folder structure
 
 The project is organized into three folders, namely:
 
-* [`sync_networks`] contains implementation of `push-sum`, `subgradient-push`, `ADD-OPT`,` Projected Subgradient`and `FROST` algorithms with synchronous networks
-* [`async_networks`] contains an implementation of `ADD-OPT` and `FROST` algorithms with asynchronous networks
-* [`assets`] contains `plots` containing convergence plots (.png format) & `matvar` having matlab workspace variables
+* `sync_networks` contains implementation of `push-sum`, `subgradient-push`, `ADD-OPT`,` Projected Subgradient`and `FROST` algorithms with synchronous networks
+* `async_networks` contains an implementation of `ADD-OPT` and `FROST` algorithms with asynchronous networks
+* `assets` contains `plots` containing convergence plots (.png format) & `matvar` having matlab workspace variables
 
 ## Scripts
 
@@ -52,6 +54,8 @@ The following section describes the `.m` files and `function`s used in the proje
 ### Running algorithms
 
 Change the working directory to the path where code is stored and run the required `.m` file.
+
+
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
