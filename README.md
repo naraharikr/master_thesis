@@ -21,13 +21,16 @@ The private cost function used at each agent is a `Distributed Quadratic cost fu
 ### Research Objectives
 
 The outputs of the research are to study,
-1. convergence of `ADD-OPT`and `FROST` algorithms in case of synchronous networks
-2. extending the implementation of both with asynchronous networks and plot the convergence
-3. compare the `Average MSE` of FROST and ADD-OPT in case of asynchronous networks and delays
+1. convergence of `ADD-OPT`and `FROST` algorithms in case of synchronous networks (network with no delays and no switchings)
+2. implementation of `ADD-OPT` and `FROST` algorithms in case of asynchronous networks (network with delays and switchings)
+3. compare residual plots in case of different delays in the network and discuss the results
+3. compare the `Average MSE` of FROST and ADD-OPT in case of asynchronous networks
 
 ### System Requirements
 
-The algorithms are developed with `MATLAB (R2020b)` and tested on `Windows`platform. `MATLAB` is sufficient enough for the execution of the scripts, preferably `R2020a` or `R2020b`.  The back-compatibility has not been done if you're using the previous version of the software.  Also, the evaluation of algorithms has been tested only on the Windows platform at the moment.  In case of issues in Linux, kindly comment it back or contact me at `narahari.kasagattaramesh@aalto.fi`
+The algorithms are developed with `MATLAB (R2020b)` and tested on `Windows`platform. `MATLAB` is sufficient enough for the execution of the scripts, preferably `R2020a` or `R2020b`.  The back-compatibility has not been tested if you're using the previous version of the software.  Also, the evaluation of algorithms has been tested only on the Windows platform at the moment.  
+
+In case of any issues, kindly reach me at `narahari.kasagattaramesh@aalto.fi`
 
 
 
@@ -39,7 +42,7 @@ The project is organized into three folders, namely:
 
 * `sync_networks` contains implementation of `push-sum`, `subgradient-push`, `ADD-OPT`,` Projected Subgradient`and `FROST` algorithms with synchronous networks
 * `async_networks` contains an implementation of `ADD-OPT` and `FROST` algorithms with asynchronous networks
-* `assets` contains `plots` containing convergence plots (.png format) & `matvar` having matlab workspace variables
+* `assets` contains `plots` containing convergence and residual plots (.png format) & matlab workspace variables are stored in `matvar`
 
 ## Scripts
 
@@ -47,9 +50,6 @@ The following section describes the `.m` files and `function`s used in the proje
 
 * [`compare_residual_plots.m`](compare_residual_plots) script generating residual plot comparision
 * [`compute_gradient.m`](compute_gradient) function handle to compute the gradient of function at x
-
-
-**NOTE: Out of above algorithms pushsum, subgradient-push, ADD-OPT needs column-stochastic weight matrix, while projected subgradient and FROST uses row-stochastic weights.  This information is also available in each `.m` file.  Be careful to check these requirements if you change weight matrix.**
 
 ### Running algorithms
 
@@ -62,7 +62,7 @@ Change the working directory to the path where code is stored and run the requir
 ## DISCLAIMER
 This is an ongoing part of my Master Thesis at Aalto University.  The Master thesis is being supervised by [Themistoklis Charalambous](https://themistoklis.org/), Associate Professor, Aalto University.  Also, he heads [Distributed and Networked Control Systems](https://www.aalto.fi/en/department-of-electrical-engineering-and-automation/distributed-and-networked-control-systems) research group, which focuses on blending control theory, communication theory and information theory.  
 
-I am being part of the research group for my master thesis which focuses primalrily to reproduce the distributed optimisation algorithms proposed in research paper as mentioned in `Reference Work` and to extend the implementaion of `ADD-OPT (Section III-B3)` and `FROST (Section IV-A)` for asynchronous networks.  Study and understanding of Convergence analysis is not included in the scope of the thesis work.
+I am being part of the research group for my master thesis which focuses primalrily to reproduce the distributed optimisation algorithms proposed in research paper as mentioned in `Reference Work` and to extend the implementaion of `ADD-OPT (Section III-B3)` and `FROST (Section IV-A)` for time-varying graphs with delays, with switchings, and both delays & switchings.
 
 ### Reference Work
 

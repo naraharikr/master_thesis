@@ -1,7 +1,7 @@
 %
 %
-% Implementation of ADDOPT/Push-DIGing consensus algorithm
-% with Asynchronous networks 
+% Implementation of ADDOPT consensus algorithm with Asynchronous networks
+% (only delays in communication)
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -10,9 +10,8 @@ clc; clear; close all;
 access_func_directory = fileparts(pwd);
 addpath(access_func_directory);
 
-%% START: Asynchronous ADD-OPT Algorithm
+%% START: ADD-OPT Algorithm with Delays
 
-clc; clear; close all;
 % column-stochastic weight matrix
 B = [1/3 0 0 1/2 0; 1/3 1/3 0 0 0; 1/3 1/3 1/2 0 1/3; 0 0 0 1/2 1/3; 0 1/3 1/2 0 1/3];
 n = length(B);
@@ -23,7 +22,7 @@ alpha = [2 4 5 3 1]';
 zd = vd./xd;
 
 % initialization for network with delays
-maxDelay = 1;
+maxDelay = 10;
 vd_k = [vd' zeros(1,n*maxDelay)]';
 xd_k = [xd' zeros(1,n*maxDelay)]';
 yd_k = [yd' zeros(1,n*maxDelay)]';
@@ -40,12 +39,12 @@ for m=1:n_aug
 end
 gradientEstimatordelay_arxiv=yd_0;
 
-% consensus value
+% consensus value (linear convergence to optimal value of x)
 average_x = mean(xd_0);
 optimal_x = sum(alpha.*xd_0)/sum(alpha)
 
 %% ADD-OPT (Async) Algorithm
-    itr = 200; step=0.01;
+    itr = 1000; step=0.001;
     for i=1:itr
         % create weight matrix with delay
         B_aug = aug_weight_matrix(B,maxDelay);
@@ -62,13 +61,17 @@ optimal_x = sum(alpha.*xd_0)/sum(alpha)
         zd_arxiv = [zd_arxiv zd_k(1:n)];
         
         for j=1:n_aug
-            gradientEstimatordelay(j)=compute_gradient(zd_k(j),xd_0(j),alpha(j));
+            gradientEstimatordelay(j) = ...
+                                compute_gradient(zd_k(j),xd_0(j),alpha(j));
         end
-        yd_k = B_aug*yd_k+gradientEstimatordelay-gradientEstimatordelay_arxiv(:,end);
-        gradientEstimatordelay_arxiv=[gradientEstimatordelay_arxiv gradientEstimatordelay];
+        yd_k = B_aug*yd_k+gradientEstimatordelay...
+                                     - gradientEstimatordelay_arxiv(:,end);
+        gradientEstimatordelay_arxiv = ...
+                     [gradientEstimatordelay_arxiv gradientEstimatordelay];
     end
     
-    async_addopt_residual_arxiv=compute_residual(zd_arxiv,optimal_x,'async_addopt');
+    async_addopt_residual_arxiv=...
+        compute_residual(zd_arxiv,optimal_x,'async_addopt_delay',maxDelay);
 
 %% Plots
 set(0, 'DefaultTextInterpreter', 'latex')

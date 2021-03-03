@@ -1,0 +1,23 @@
+### Files and Plots  ###
+
+# file for pseudo code and running testcases
+async_networks/test.mlx
+
+# matvar files
+assets/matvar/async_addopt_delay_blocks_5.mat
+assets/matvar/async_addopt_delay_blocks_10.mat
+assets/matvar/async_addopt_delay_blocks_15.mat
+assets/matvar/async_addopt_delay_blocks_20.mat
+assets/matvar/async_addopt_delay_blocks_20_stepsize_005.mat
+
+# temporary images
+case1.png
+case2.png
+
+### MATLAB Extension files ###
+
+# Windows default autosave extension
+*.asv
+
+# OSX / *nix default autosave extension
+*.m~

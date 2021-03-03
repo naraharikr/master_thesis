@@ -1,5 +1,5 @@
 %% START
-function [residual_arxiv] = compute_residual(z_arxiv,opt_x,str)
+function [residual] = compute_residual(z_arxiv,opt_x,algo_name,delay)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Compute the average residual at each agent for given algorithm
@@ -7,42 +7,64 @@ function [residual_arxiv] = compute_residual(z_arxiv,opt_x,str)
 % 
 % INPUT: z_arxiv = ratio zk vector (no_of_agents X iterations)
 %        opt_x = optimal value of x (Scalar)
-%        str = algorithm name as string
+%        algo_name = algorithm name as string
 %
 % OUTPUT: residual_arxiv = residual vector (1 X iteration)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% algorithm defnitions
+%% Macro defnitions
+%
+% Synchronous networks with no delays
 SYNC_ADDOPT = 'sync_addopt'; 
-SYNC_FROST = 'sync_frost';  
-ASYNC_ADDOPT = 'async_addopt';
-ASYNC_FROST = 'async_frost';
+SYNC_FROST = 'sync_frost';   
+%
+% Asynchronous networks with only delays and no switchings
+ASYNC_ADDOPT_DELAY = 'async_addopt_delay';
+ASYNC_FROST_DELAY = 'async_frost_delay';
+%
+% Asynchronous networks with delays and switchings
+ASYNC_ADDOPT_SWITCHING_AND_DELAY = 'async_addopt_switching_and_delay';
+ASYNC_FROST_SWITCHING_AND_DELAY = 'async_frost_switching_and_delay';
+% 
+% % END-Macro defnitions
 
+%% function [residual] = compute_residual(z_arxiv,opt_x,algo_name,delay)
+%
 [n,itr]=size(z_arxiv);
-residual_arxiv = zeros(1,itr);
+residual = zeros(1,itr);
 for i=1:itr
-    residual_sum=0;
+    sum=0;
     for j=1:n
         mean_square_error = (z_arxiv(j,i)-opt_x)^2;
-        residual_sum = residual_sum + mean_square_error; 
+        sum = sum + mean_square_error; 
     end
-    residual_arxiv(i)=residual_sum/n;
+    residual(i)=sum/n;
+end
+%
+% save 'residual' variable to '../assets/matvar/' with respective names
+%
+if (nargin==3) 
+    % for synchronous networks
+    if(strcmp(algo_name,SYNC_ADDOPT))
+        str_algo = algo_name;
+    elseif(strcmp(algo_name,SYNC_FROST))
+        str_algo = algo_name;
+    end
+    file_name_in_parts = [str_algo, "residual_arxiv"];
+elseif (nargin>3)
+    % in case of ayshronous networks with just delays
+    if(strcmp(algo_name,ASYNC_ADDOPT_DELAY))
+        str_algo = algo_name;
+    elseif(strcmp(algo_name,ASYNC_FROST_DELAY))
+        str_algo = algo_name;
+    end
+    file_name_in_parts = [str_algo, "blocks", num2str(delay)];
 end
 
-% save variable to '../assets/matvar/'
-if(strcmp(str,SYNC_ADDOPT))
-    sync_addopt_residual_arxiv = residual_arxiv;
-    save('../assets/matvar/sync_addopt_residual_arxiv');
-elseif(strcmp(str,SYNC_FROST))
-    sync_frost_residual_arxiv = residual_arxiv;
-    save('../assets/matvar/sync_frost_residual_arxiv');
-elseif(strcmp(str,ASYNC_ADDOPT))
-    async_addopt_residual_arxiv = residual_arxiv;
-    save('../assets/matvar/async_addopt_residual_arxiv');
-elseif(strcmp(str,ASYNC_FROST))
-    async_frost_residual_arxiv = residual_arxiv;
-    save('../assets/matvar/async_frost_residual_arxiv');
-end
-
+% % generate the respective string names to store data
+    file_name = join(file_name_in_parts,"_");
+    file_path = sprintf('../assets/matvar/%s.mat',file_name);
+    save(file_path,'residual');
+    
 end
 %% END
