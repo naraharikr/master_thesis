@@ -1,7 +1,7 @@
 %
 %
 % Implementation of ADDOPT consensus algorithm with Asynchronous networks
-% (only delays in communication)
+% (only switchings in the topology)
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -10,7 +10,7 @@ clc; clear; close all;
 access_func_directory = fileparts(pwd);
 addpath(access_func_directory);
 
-%% START: ADD-OPT Algorithm with Delays
+%% START: ADD-OPT Algorithm With Switchings (Push-DIGing)
 
 % column-stochastic weight matrix
 B = [1/3 0 0 1/2 0; 1/3 1/3 0 0 0; 1/3 1/3 1/2 0 1/3; 0 0 0 1/2 1/3; 0 1/3 1/2 0 1/3];
@@ -22,7 +22,7 @@ alpha = [2 4 5 3 1]';
 zd = vd./xd;
 
 % initialization for network with delays
-maxDelay = 10;
+maxDelay = 5;
 vd_k = [vd' zeros(1,n*maxDelay)]';
 xd_k = [xd' zeros(1,n*maxDelay)]';
 yd_k = [yd' zeros(1,n*maxDelay)]';
@@ -107,4 +107,4 @@ title('ADDOPT Implementation with Quadratic Cost Function');
 fprintf('\nADD_OPT/Push-DIGing Consensus result\n');
 display(zd_k(1:n));
 
-%% END: Asynchronous ADD-OPT Algorithm
+%% END: ADD-OPT Algorithm With Switchings (Push-DIGing)
