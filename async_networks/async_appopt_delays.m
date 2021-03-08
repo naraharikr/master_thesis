@@ -91,7 +91,7 @@ figure(3); hold on; box on;
 plot(0:itr,zd_arxiv);
 xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
 yl=ylabel('Ratio $z_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
-title('ADD-OPT Algorithm: Asynchronous networks'); 
+title('ADD-OPT Algorithm: Delay networks'); 
 plot([0,itr],[optimal_x,optimal_x], 'r-.')
 plot([0,itr],[average_x,average_x], 'b-.')
 

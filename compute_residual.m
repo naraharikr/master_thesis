@@ -22,6 +22,10 @@ SYNC_FROST = 'sync_frost';
 ASYNC_ADDOPT_DELAY = 'async_addopt_delay';
 ASYNC_FROST_DELAY = 'async_frost_delay';
 %
+% Asynchronous networks with only switchings
+ASYNC_ADDOPT_SWITCHING = 'async_addopt_switching';
+ASYNC_FROST_SWITCHING = 'async_frost_switching';
+%
 % Asynchronous networks with delays and switchings
 ASYNC_ADDOPT_SWITCHING_AND_DELAY = 'async_addopt_switching_and_delay';
 ASYNC_FROST_SWITCHING_AND_DELAY = 'async_frost_switching_and_delay';
@@ -49,6 +53,10 @@ if (nargin==3)
         str_algo = algo_name;
     elseif(strcmp(algo_name,SYNC_FROST))
         str_algo = algo_name;
+    elseif(strcmp(algo_name,ASYNC_ADDOPT_SWITCHING))
+        str_algo = algo_name;
+    elseif(strcmp(algo_name,ASYNC_FROST_SWITCHING))
+        str_algo = algo_name;
     end
     file_name_in_parts = [str_algo, "residual_arxiv"];
 elseif (nargin>3)
@@ -61,7 +69,7 @@ elseif (nargin>3)
     file_name_in_parts = [str_algo, "blocks", num2str(delay)];
 end
 
-% % generate the respective string names to store data
+% % save the file with the generated string names 'file_name'
     file_name = join(file_name_in_parts,"_");
     file_path = sprintf('../assets/matvar/%s.mat',file_name);
     save(file_path,'residual');

@@ -21,3 +21,6 @@ case2.png
 
 # OSX / *nix default autosave extension
 *.m~
+
+# Live scripts
+.mlx
