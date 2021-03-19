@@ -11,6 +11,7 @@ function [P_timeVariant,no_of_graphs] = ...
 % INPUT: P = original column-stochastic weight matrix
 %
 % OUTPUT: P_timeVariant = time-varying configuration of P
+%         no_of_graphs = number of graphs time-varying graphs generated
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % P1 = [1/2 1/2 0 0; 0 1/2 1/2 0; 1/2 0 1/2 0; 0 0 0 1];
@@ -20,11 +21,12 @@ function [P_timeVariant,no_of_graphs] = ...
 % P5 = [1 0 0 0; 0 1/2 1/2 0; 0 0 1/2 1/2; 0 1/2 0 1/2]; (Do not use this
 % combination)
 
-% Didnot work (Error while takinginverse due to Singular matrices)
+% Didnot work (Error while taking inverse due to Singular matrices)
 % P1 = [1/3 0 0 0 0; 1/3 1/3 0 0 0; 1/3 1/3 1 0 0; 0 0 0 1 0; 0 1/3 0 0 1];
 % P2 = [1 0 0 0 0; 0 1 0 0 0; 0 0 1/2 0 1/2; 0 0 0 1 0; 0 0 1/2 0 1/2];
 % P3 = [1 0 0 1/2 0; 0 1 0 0 0; 0 0 1 0 0; 0 0 0 1/2 0; 0 0 0 0 1];
 
+% Consensus reached, but not to optimal value of x
 P1 = [1/3 0 0 0 0; 1/3 1/2 0 0 0; 1/3 1/2 1 0 0; 0 0 0 1 0; 0 0 0 0 1];
 P2 = [1 0 0 1/2 0; 0 1/2 0 0 0; 0 0 1 0 0; 0 0 0 1/2 1/2; 0 1/2 0 0 1/2];
 P3 = [1 0 0 0 0; 0 1 0 0 0; 0 0 1/2 0 1/2; 0 0 0 1 0; 0 0 1/2 0 1/2];

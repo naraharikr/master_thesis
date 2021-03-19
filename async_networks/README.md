@@ -6,8 +6,14 @@ All the algorithms described here, implements consensus algorithms and achieves 
 
 The following section describes which file does what in breif.
 
-* [`async_appopt.m`](async_appopt.m) implements ADD-OPT consensus algorithm in asynchronous network setup
-* [`aug_weight_matrix.m`](aug_weight_matrix.m) function to generate weight matrix incase of network delays
+* [`async_appopt_delays.m`](async_appopt_delays.m) implements ADD-OPT consensus algorithm in asynchronous network setup (only delay networks)
+* [`async_appopt_switchings.m`](async_appopt_switchings.m) implements ADD-OPT consensus algorithm in asynchronous network setup (only time-varying networks)
+* [`async_frost_delays.m`](async_frost_delays.m) implements FROST consensus algorithm in asynchronous network setup (only delay networks)
+* [`gen_aug_weight_matrix.m`](gen_aug_weight_matrix.m) function to generate weight matrix incase of network with delays
+* [`gen_cs_aug_matrix.m`](gen_cs_aug_matrix.m) function to generate column-stoachastic weight matrix
+* [`gen_rs_aug_matrix.m`](gen_rs_aug_matrix.m) function to generate row-stoachastic weight matrix
+* [`gen_switching_weight_mat.m`](gen_switching_weight_mat.m) function to generate weight matrix incase of network with switchings
+* [`pick_switching_weight_mat.m`](pick_switching_weight_mat.m) function to randomly choose time-varying weight matrix without repetation over a set interval
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Convergence Plots
@@ -24,5 +30,16 @@ In this secton, we show the convergence plots for all algorithms proposed in abo
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Residual plot
 
-The following figure plots the comparision of average mean-square error between ADD-OPT and FROST algorithms.
+The following figure plots the comparision of average mean-square error for asynchronous ADD-OPT and FROST algorithms.
 
+<!-- ADD-OPT - Residual plot comparision for 
+                                           different step-size and delays -->
+<p float="middle">
+  <img src="../assets/plots/async_addopt_different_delay_different_stepsize.png" alt="network" width="500"/>
+  <img src="../assets/plots/async_addopt_different_delay_same_stepsize.png" alt="network" width="500"/>
+</p>
+
+<!-- ADD-OPT - Residual plot comparision for different step-size -->
+<p float="middle">
+  <img src="../assets/plots/async_addopt_convergence_for_different_stepsize.png" alt="network" width="500"/>
+</p>

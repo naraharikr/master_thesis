@@ -32,30 +32,31 @@ zs_arxiv = zs_k; vs_arxiv = vs_k;
 % initialization of cost function
 gradientEstimatorswitching = zeros(n,1);
 for m=1:n
-    ys_k(m)=compute_gradient(xs_0(m),xs_0(m),alpha(m));
+    y(m)=compute_gradient(xs_0(m),xs_0(m),alpha(m)); %ys_k = 
 end
-gradientEstimatorswitching_arxiv=ys_k;
+gradientEstimatorswitching_arxiv = y;%=ys_k;
 
 % consensus value (linear convergence to optimal value of x)
 average_x = mean(xs_0);
 optimal_x = sum(alpha.*xs_0)/sum(alpha)
 
 %% Push-DIGing Algorithm
-    itr = 1000; step=0.1;
+    itr = 1000; step=0.000001;
     % create time-varyging graph for given topology
-    [B_timeVariant,n_timeVariant] = generate_timevariant_weight_matrix(B);
+    [B_timeVariant,n_timeVariant] = gen_switching_weight_mat(B);
     n_temp = n_timeVariant;
     index = randperm(n_temp);
     
     for i=1:itr
         if (n_temp==0)
             n_temp = n_timeVariant;
+            index = randperm(n_temp); 
         elseif (n_temp>=1)
             % randomly pick a weight matrix from 'B_timeVariant'
-            [Bs_k, updated_idx] = select_timevariant_weightMatrix(B_timeVariant,index);
+            [Bs_k, index] = pick_switching_weight_mat(B_timeVariant,index);
             n_temp = n_temp-1;
         end
-        Bs_arxiv(:,:,i) = Bs_k;
+%         Bs_arxiv(:,:,i) = Bs_k;
         % Values of 'v' with switchings
         vs_k = Bs_k*vs_k;
         diag_vs_k = diag(vs_k);
@@ -66,7 +67,8 @@ optimal_x = sum(alpha.*xs_0)/sum(alpha)
         xs_arxiv = [xs_arxiv xs_k];
         
         % Values of 'z' with switchings
-        zs_k = inv(diag_vs_k)*xs_k;
+%         zs_k = inv(diag_vs_k)*xs_k;
+        zs_k = diag_vs_k\xs_k;
         zs_arxiv = [zs_arxiv zs_k];
         
         for j=1:n

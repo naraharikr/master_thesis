@@ -1,6 +1,6 @@
 %% START
 function [select_matrix, updated_index] = ...
-                                   select_timevariant_weightMatrix(P,index)
+                                  select_timevariant_weight_matrix(P,index)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Randomly select a timevariant graph from the generated weight matrices

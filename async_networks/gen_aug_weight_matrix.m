@@ -13,7 +13,9 @@ O=zeros(n,n);
 
 % generate the random states for all the different delays
 R=maxDelay*rand(size(P));
-P0=P; P0(find(P))=1; P0=P0-diag(diag(P0));
+P0=P; 
+P0(find(P))=1; 
+P0=P0-diag(diag(P0));
 R=R.*P0;
 R=round(R);
 
@@ -34,22 +36,11 @@ for i=1:n
     end
 end
 
-% now construct the state matrix based on the above
-P_aug = [];
-% construct rows
-for i=1:maxDelay+1
-    % assign columns
-    row = [];
-    for j=1:maxDelay+1
-        if j == 1
-            row = [row squeeze(P_i(i, :, :))];
-        elseif j == i+1
-            row = [row I];
-        else
-            row = [row O];
-        end
-    end
-    % pad the row
-    P_aug = [P_aug; row];
+% construct column/row-stochastic augmented matrix
+column_sum = sum(P,1)';
+row_sum = sum(P,2);
+if all(column_sum == 1)
+    P_aug = gen_cs_aug_matrix(P_i,I,O,maxDelay);
+elseif all(row_sum == 1)
+    P_aug = gen_rs_aug_matrix(P_i,I,O,maxDelay);
 end
-

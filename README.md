@@ -50,6 +50,7 @@ The following section describes the `.m` files and `function`s used in the proje
 
 * [`compare_residual_plots.m`](compare_residual_plots) script generating residual plot comparision
 * [`compute_gradient.m`](compute_gradient) function handle to compute the gradient of function at x
+* [`compute_residual.m`](compute_residual) function handle to compute the average mean-square-error for any algorithm
 
 ### Running algorithms
 

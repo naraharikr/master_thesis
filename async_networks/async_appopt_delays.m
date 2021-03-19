@@ -1,6 +1,6 @@
 %
 %
-% Implementation of ADDOPT consensus algorithm with Asynchronous networks
+% Implementation of ADD-OPT consensus algorithm with Asynchronous networks
 % (only delays in communication)
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -22,7 +22,7 @@ alpha = [2 4 5 3 1]';
 zd = vd./xd;
 
 % initialization for network with delays
-maxDelay = 5;
+maxDelay = 0;
 vd_k = [vd' zeros(1,n*maxDelay)]';
 xd_k = [xd' zeros(1,n*maxDelay)]';
 yd_k = [yd' zeros(1,n*maxDelay)]';
@@ -43,11 +43,11 @@ gradientEstimatordelay_arxiv=yd_0;
 average_x = mean(xd_0);
 optimal_x = sum(alpha.*xd_0)/sum(alpha)
 
-%% ADD-OPT (Async) Algorithm
+%% ADD-OPT Algorithm (Delays)
     itr = 1000; step=0.001;
     for i=1:itr
         % create weight matrix with delay
-        B_aug = aug_weight_matrix(B,maxDelay);
+        B_aug = gen_aug_weight_matrix(B,maxDelay);
 
         vd_k = B_aug*vd_k;
 %         diag_vd_k = diag(vd_k);
@@ -70,8 +70,8 @@ optimal_x = sum(alpha.*xd_0)/sum(alpha)
                      [gradientEstimatordelay_arxiv gradientEstimatordelay];
     end
     
-    async_addopt_residual_arxiv=...
-        compute_residual(zd_arxiv,optimal_x,'async_addopt_delay',maxDelay);
+    async_addopt_residual_arxiv = ...
+        compute_residual(zd_arxiv,optimal_x,'async_addopt_delay',step);
 
 %% Plots
 set(0, 'DefaultTextInterpreter', 'latex')
@@ -101,7 +101,7 @@ set(gca, 'YScale', 'log')
 xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
 yl=ylabel('$\frac{1}{n}\sum_{i=1}^{n}(z^{i}_k - x^{*})^{2}$ at each iteration','fontsize',14); 
 set(yl, 'Interpreter', 'latex');
-title('ADDOPT Implementation with Quadratic Cost Function');
+title('ADDOPT (Delay) with Quadratic Cost Function');
 
 % Display optimal_x and final z
 fprintf('\nADD_OPT/Push-DIGing Consensus result\n');
