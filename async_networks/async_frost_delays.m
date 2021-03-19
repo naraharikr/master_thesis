@@ -84,8 +84,8 @@ itr = 200; step = 0.001;
         zd_arxiv = [zd_arxiv zd_k(1:n)];
     end
     % compute residual
-    async_frost_residual_arxiv = ...
-         compute_residual(xd_arxiv,optimal_x,'async_frost_delay',maxDelay);
+%     async_frost_residual_arxiv = ...
+%          compute_residual(xd_arxiv,optimal_x,'async_frost_delay',maxDelay);
 
 %% Convergence Results & Residual Plots
 set(0, 'DefaultTextInterpreter', 'latex')
@@ -108,15 +108,15 @@ figure(3);hold on; box on;
 plot(0:itr,zd_arxiv);
 xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
 yl=ylabel('$z^{i}_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
-plot([0,itr],[0,0], 'r-.')
+plot([0,itr],[0,0], 'r-.'); hold off;
 
-figure(4); hold off; box on;
-plot(0:itr,async_frost_residual_arxiv);
-set(gca, 'YScale', 'log')
-xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
-yl=ylabel('$\frac{1}{n}\sum_{i=1}^{n} (x^{i}_k - x^{*})^{2}$ (Avg. Mean-sqaure error)','fontsize',14); 
-set(yl, 'Interpreter', 'latex');
-title('FROST(Delay) with Quadratic Cost Function');
+% figure(4); hold off; box on;
+% plot(0:itr,async_frost_residual_arxiv);
+% set(gca, 'YScale', 'log')
+% xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
+% yl=ylabel('$\frac{1}{n}\sum_{i=1}^{n} (x^{i}_k - x^{*})^{2}$ (Avg. Mean-sqaure error)','fontsize',14); 
+% set(yl, 'Interpreter', 'latex');
+% title('FROST(Delay) with Quadratic Cost Function');
 
 %% Display consensus result
 fprintf('\nFROST Consensus result\n');

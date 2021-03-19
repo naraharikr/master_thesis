@@ -36,6 +36,7 @@ for q=1:n
     gradientEstimator(q)=compute_gradient(x(q),x_0(q),alpha(q));
 end
 gradientEstimator_arxiv = gradientEstimator;
+imbalanceEliminator_arxiv = imbalanceEliminator;
 
 % consensus value = optimal_x
 average_x = mean(x);
@@ -48,18 +49,22 @@ itr = 200;
     for i=1:itr
         y = A*y;
         imbalanceEliminator = [imbalanceEliminator diag(y)];
+                       
         x = A*x - step*z_arxiv(:,end);
         x_arxiv = [x_arxiv x];
         for j=1:n
-            gradientEstimator(j)=compute_gradient(x(j),x_0(j),alpha(j));
+            gradientEstimator(j) = compute_gradient(x(j),x_0(j),alpha(j));
         end
-        gradientEstimator_arxiv = [gradientEstimator_arxiv gradientEstimator];
-        z = A*z + (gradientEstimator_arxiv(:,end)./imbalanceEliminator(:,end))...
-                - (gradientEstimator_arxiv(:,i)./imbalanceEliminator(:,i));
+        gradientEstimator_arxiv = ...
+                               [gradientEstimator_arxiv gradientEstimator];
+        z = A*z ...
+              + (gradientEstimator_arxiv(:,end)./imbalanceEliminator(:,end))...
+              - (gradientEstimator_arxiv(:,i)./imbalanceEliminator(:,i));
         z_arxiv = [z_arxiv z];
     end
     
-    sync_frost_residual_arxiv=compute_residual(x_arxiv,optimal_x,'sync_frost');
+    sync_frost_residual_arxiv = ...
+                          compute_residual(x_arxiv,optimal_x,'sync_frost');
 
 %% Convergence Results & Residual Plots
 set(0, 'DefaultTextInterpreter', 'latex')

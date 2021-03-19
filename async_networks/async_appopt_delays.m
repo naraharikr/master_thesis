@@ -22,7 +22,7 @@ alpha = [2 4 5 3 1]';
 zd = vd./xd;
 
 % initialization for network with delays
-maxDelay = 0;
+maxDelay = 5;
 vd_k = [vd' zeros(1,n*maxDelay)]';
 xd_k = [xd' zeros(1,n*maxDelay)]';
 yd_k = [yd' zeros(1,n*maxDelay)]';
@@ -44,7 +44,7 @@ average_x = mean(xd_0);
 optimal_x = sum(alpha.*xd_0)/sum(alpha)
 
 %% ADD-OPT Algorithm (Delays)
-    itr = 1000; step=0.001;
+    itr = 1000; step=0.005;
     for i=1:itr
         % create weight matrix with delay
         B_aug = gen_aug_weight_matrix(B,maxDelay);
@@ -71,7 +71,7 @@ optimal_x = sum(alpha.*xd_0)/sum(alpha)
     end
     
     async_addopt_residual_arxiv = ...
-        compute_residual(zd_arxiv,optimal_x,'async_addopt_delay',step);
+        compute_residual(zd_arxiv,optimal_x,'async_addopt_delay',maxDelay);
 
 %% Plots
 set(0, 'DefaultTextInterpreter', 'latex')
