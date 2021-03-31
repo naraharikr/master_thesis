@@ -36,11 +36,9 @@ Steps 1, and 2 are mandatory.  Steps-3,4,5 have to used according to the user in
 
 The following plots are generated after executing `addopt_with_delays.m` with following parameters.
 
-Delays in the network = [1 2 3 4 5 6 7 8 9 10]
-Stepsize = [0.0001 0.0002 0.0003 0.0004 0.0005 0.0006 0.0007 0.0008 0.0009
-            0.001  0.002  0.003  0.004  0.005  0.006  0.007  0.008  0.009
-            0.01   0.02   0.03   0.04   0.05   0.06   0.07   0.08   0.09
-            0.1]
+*Delays in the network = [1 2 3 4 5 6 7 8 9 10]*
+
+*Stepsize = [0.0001  0.0002  0.0003  0.0004  0.0005  0.0006  0.0007  0.0008  0.0009  0.001  0.002  0.003  0.004  0.005  0.006  0.007  0.008  0.009  0.01  0.02  0.03  0.04  0.05  0.06  0.07  0.08  0.09  0.1]*
 
 <p float="middle">
   <img src="fig1.png" alt="network" width="500"/>
