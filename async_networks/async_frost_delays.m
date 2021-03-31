@@ -16,7 +16,7 @@ addpath(access_func_directory);
 A = [0.5 0.25 0 0 0.25 0;0.25 0.5 0.25 0 0 0;0.5 0 0.5 0 0 0;
      0.25 0 0.25 0.25 0 0.25;0 0 0 0 0.5 0.5;0 0 0.25 0.25 0 0.5];
 n = length(A);
-x = [3 2 5 6 1 7]';
+x = [3 2 5 6 1 7]';%randi([1 20],n,1);
 y = eye(n);
 z = x./diag(y);
 alpha = [1 3 2 1 4 1]';
@@ -48,20 +48,21 @@ average_x = mean(xd_0);
 optimal_x = sum(alpha.*xd_0)/sum(alpha)
 
 %% FROST Algorithm (Delays)
-itr = 200; step = 0.001;
+itr = 500; step = 0.001;
 % s = zeros(n_aug,1);
     for i=1:itr
         % create weight matrix with delay
         A_aug = gen_aug_weight_matrix(A,maxDelay);
 %         s(:,i) = sum(A_aug,2);
         % Iterations of 'y' with delays
+        
         yd_k = A_aug*yd_k;
         diag_yd_k = diag(yd_k);
         imbalanceEliminatordelay = [imbalanceEliminatordelay diag_yd_k];
         yd_arxiv = [yd_arxiv diag_yd_k(1:n)];
         
         % Iterations of 'x' with delays
-        xd_k = A_aug*xd_k - step*zd_k;
+        xd_k = A_aug*xd_k - (step*1/n)*zd_k;
         xd_arxiv = [xd_arxiv xd_k(1:n)];
         
         for j=1:n_aug

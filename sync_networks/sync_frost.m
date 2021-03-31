@@ -1,7 +1,8 @@
 %
 %
 % Implementation of FROST (Fast Row-stochastic Optimisation with 
-% uncordinated STep-sizes) over directed graphs
+% uncordinated STep-sizes) algorithm consensus algorithm with 
+% Synchronous networks 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -12,15 +13,15 @@ addpath(access_func_directory);
 
 %% START: FROST Algorithm
 
-% Row-stochastic Weight Matrix
+% row-stochastic weight matrix
 A = [0.5 0.25 0 0 0.25 0;0.25 0.5 0.25 0 0 0;0.5 0 0.5 0 0 0;
      0.25 0 0.25 0.25 0 0.25;0 0 0 0 0.5 0.5;0 0 0.25 0.25 0 0.5];
-% A = [1/3 1/3 1/3 0 0; 0 1/3 1/3 0 1/3; 0 0 1/2 0 1/2; 1/2 0 0 1/2 0; 0 0 1/3 1/3 1/3];
+
 n = length(A);
-x = [3 2 5 6 1 7]';%[4 1 5 2 3]';
+x = [3 2 5 6 1 7]';
 y = eye(n);
 z = x./diag(y);
-alpha = [1 3 2 1 4 1]';%[2 4 5 3 1]';
+alpha = [1 3 2 1 4 1]';
 
 % initialization
 x_0 = x; x_arxiv = x; 
@@ -48,6 +49,7 @@ itr = 200;
     step = 0.005;
     for i=1:itr
         y = A*y;
+        store_y(:,:,i) = y;
         imbalanceEliminator = [imbalanceEliminator diag(y)];
                        
         x = A*x - step*z_arxiv(:,end);

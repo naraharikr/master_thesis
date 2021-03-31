@@ -1,0 +1,27 @@
+MATLAB is selecting SOFTWARE OPENGL rendering.
+
+                                                                              < M A T L A B (R) >
+                                                                    Copyright 1984-2020 The MathWorks, Inc.
+                                                                    R2020b (9.9.0.1467703) 64-bit (glnxa64)
+                                                                                August 26, 2020
+
+ 
+For online documentation, see https://www.mathworks.com/support
+For product information, visit www.mathworks.com.
+ 
+
+****** STEP-SIZE = 0.030000, DELAY = 5, 2000 ITERATIONS ****** 
+
+Optimal value of 'x' = 3.0667 
+
+Convergence result 
+		6.2830e+240 
+		2.3136e+242 
+		1.8457e+240 
+		-4.0584e+240 
+		8.2084e+239 
+
+Workspace variables are saved with name >>>> 
+  'resultLog_delay_5_step_0_03_itr_2000.mat' 
+
+********************** END OF EXECUTION **********************

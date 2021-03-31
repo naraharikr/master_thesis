@@ -1,7 +1,7 @@
 %
 %
-% Implementation of ADDOPT/Push-DIGing consensus algorithm
-% with Synchronous networks 
+% Implementation of Accelerated Distributed Sirected Optimization(ADD-OPT) 
+% consensus algorithm with Synchronous networks 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -40,17 +40,26 @@ optimal_x = sum(alpha.*x0)/sum(alpha)
 %% ADD_OPT/Push-DIGing
     itr = 200; step = 0.01;
     for i=1:itr
-        v = B*v; v_arxiv = [v_arxiv v];
-        x = B*x - step*y; x_arxiv = [x_arxiv x];
-        z = x./v; z_arxiv = [z_arxiv z];
+        v = B*v; 
+        v_arxiv = [v_arxiv v];
+        
+        x = B*x - step*y; 
+        x_arxiv = [x_arxiv x];
+        
+        z = x./v; 
+        z_arxiv = [z_arxiv z];
+        
         for j=1:n
             gradientEstimator(j)=compute_gradient(z(j),x0(j),alpha(j));
         end
         y = B*y+gradientEstimator-gradientEstimator_arxiv(:,end);
-        gradientEstimator_arxiv=[gradientEstimator_arxiv gradientEstimator];
+        y_arxiv = [y_arxiv y];
+        gradientEstimator_arxiv = ...
+                               [gradientEstimator_arxiv gradientEstimator];
     end
     
-    sync_addopt_residual_arxiv=compute_residual(z_arxiv,optimal_x,'sync_addopt');
+    sync_addopt_residual_arxiv = ...
+                         compute_residual(z_arxiv,optimal_x,'sync_addopt');
 
 %% Plots
 set(0, 'DefaultTextInterpreter', 'latex')
@@ -59,28 +68,33 @@ set(gca, 'TickLabelInterpreter', 'latex')
 figure(1); hold on; box on;
 plot(0:itr,v_arxiv);
 xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
-yl=ylabel('Ratio $z_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
+yl=ylabel('$v^{i}_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
 
 figure(2); hold on; box on;
 plot(0:itr,x_arxiv);
 xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
-yl=ylabel('Ratio $z_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
+yl=ylabel('$x^{i}_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
 
 figure(3); hold on; box on;
+plot(0:itr,y_arxiv);
+xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
+yl=ylabel('$y^{i}_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
+
+figure(4); hold on; box on;
 plot(0:itr,z_arxiv);
 xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
 yl=ylabel('Ratio $z_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
-title('ADD-OPT/Push-DIGing: Synchronous networks'); 
+title('Synchronous Networks: Accelerated Distributed Sirected Optimization (ADD-OPT)'); 
 plot([0,itr],[optimal_x,optimal_x], 'r-.')
 plot([0,itr],[average_x,average_x], 'b-.')
 
-figure(4); hold off; box on;
+figure(5); hold on; box on;
 plot(0:itr,sync_addopt_residual_arxiv);
 set(gca, 'YScale', 'log')
 xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
 yl=ylabel('$\frac{1}{n}\sum_{i=1}^{n}(z^{i}_k - x^{*})^{2}$ at each iteration','fontsize',14); 
 set(yl, 'Interpreter', 'latex');
-title('ADDOPT Implementation with Quadratic Cost Function');
+title('ADDOPT Implementation with Quadratic Cost Function'); hold off;
 
 %% Display optimal_x and final z
 fprintf('\nADD_OPT/Push-DIGing Consensus result\n');

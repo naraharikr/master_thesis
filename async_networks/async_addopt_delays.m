@@ -22,7 +22,7 @@ alpha = [2 4 5 3 1]';
 zd = vd./xd;
 
 % initialization for network with delays
-maxDelay = 5;
+maxDelay = 1;
 vd_k = [vd' zeros(1,n*maxDelay)]';
 xd_k = [xd' zeros(1,n*maxDelay)]';
 yd_k = [yd' zeros(1,n*maxDelay)]';
@@ -44,19 +44,18 @@ average_x = mean(xd_0);
 optimal_x = sum(alpha.*xd_0)/sum(alpha)
 
 %% ADD-OPT Algorithm (Delays)
-    itr = 1000; step=0.005;
+    itr = 200; step=0.001;
     for i=1:itr
         % create weight matrix with delay
+        fprintf("%d",i)
         B_aug = gen_aug_weight_matrix(B,maxDelay);
 
         vd_k = B_aug*vd_k;
-%         diag_vd_k = diag(vd_k);
         vd_arxiv = [vd_arxiv vd_k(1:n)];
         
         xd_k = B_aug*xd_k - step*yd_k;
         xd_arxiv = [xd_arxiv xd_k(1:n)];
         
-%         zd_k = inv(diag_vd_k)*xd_k;
         zd_k = xd_k./vd_k;
         zd_arxiv = [zd_arxiv zd_k(1:n)];
         
@@ -70,41 +69,47 @@ optimal_x = sum(alpha.*xd_0)/sum(alpha)
                      [gradientEstimatordelay_arxiv gradientEstimatordelay];
     end
     
-    async_addopt_residual_arxiv = ...
-        compute_residual(zd_arxiv,optimal_x,'async_addopt_delay',maxDelay);
+%     async_addopt_residual_arxiv = ...
+%         compute_residual(zd_arxiv,optimal_x,'async_addopt_delay',maxDelay);
 
 %% Plots
-set(0, 'DefaultTextInterpreter', 'latex')
-set(gca, 'TickLabelInterpreter', 'latex')
+% set(0, 'DefaultTextInterpreter', 'latex')
+% set(gca, 'TickLabelInterpreter', 'latex')
+% 
+% figure(1); hold on; box on;
+% plot(0:itr,vd_arxiv);
+% xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
+% yl=ylabel('$v_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
+% 
+% figure(2); hold on; box on;
+% plot(0:itr,xd_arxiv);
+% xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
+% yl=ylabel('$x_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
+% 
+% figure(3); hold on; box on;
+% plot(0:itr,zd_arxiv);
+% xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
+% yl=ylabel('Ratio $z_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
+% title('ADD-OPT Algorithm: Delay networks'); 
+% plot([0,itr],[optimal_x,optimal_x], 'r-.')
+% plot([0,itr],[average_x,average_x], 'b-.')
+% 
+% figure(4); hold off; box on;
+% plot(0:itr,async_addopt_residual_arxiv);
+% set(gca, 'YScale', 'log')
+% xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
+% yl=ylabel('$\frac{1}{n}\sum_{i=1}^{n}(z^{i}_k - x^{*})^{2}$ at each iteration','fontsize',14); 
+% set(yl, 'Interpreter', 'latex');
+% title('ADDOPT (Delay) with Quadratic Cost Function');
 
-figure(1); hold on; box on;
-plot(0:itr,vd_arxiv);
-xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
-yl=ylabel('$v_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
+%% Display optimal_x and final z
+% fprintf('\nADD_OPT/Push-DIGing Consensus result\n');
+% display(zd_k(1:n));
+zd_k(1:n)
+filename = 'test.mat';
+save(filename);
 
-figure(2); hold on; box on;
-plot(0:itr,xd_arxiv);
-xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
-yl=ylabel('$x_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
-
-figure(3); hold on; box on;
-plot(0:itr,zd_arxiv);
-xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
-yl=ylabel('Ratio $z_k$ at each node','fontsize',14); set(yl, 'Interpreter', 'latex');
-title('ADD-OPT Algorithm: Delay networks'); 
-plot([0,itr],[optimal_x,optimal_x], 'r-.')
-plot([0,itr],[average_x,average_x], 'b-.')
-
-figure(4); hold off; box on;
-plot(0:itr,async_addopt_residual_arxiv);
-set(gca, 'YScale', 'log')
-xl=xlabel('Iterations $\rightarrow$','fontsize',14); set(xl, 'Interpreter', 'latex');
-yl=ylabel('$\frac{1}{n}\sum_{i=1}^{n}(z^{i}_k - x^{*})^{2}$ at each iteration','fontsize',14); 
-set(yl, 'Interpreter', 'latex');
-title('ADDOPT (Delay) with Quadratic Cost Function');
-
-% Display optimal_x and final z
-fprintf('\nADD_OPT/Push-DIGing Consensus result\n');
-display(zd_k(1:n));
-
+%srun --time=00:20:00 --mem=64GB  matlab -nojvm -nosplash -r "async_appopt_delays ; exit(0)"
+%slurm q #to check jobs running
+% cat filename #print contents
 %% END: ADD-OPT Algorithm with Delays (Async. N/w)

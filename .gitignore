@@ -1,21 +1,20 @@
-### Files and Plots  ###
+### Folders, Files, and Plots  ###
+
+# Folders to exclude
+
 
 # file for pseudo code and running testcases
 async_networks/test.mlx
 
 # matvar files
-assets/matvar/async_addopt_delay_blocks_2.mat
-assets/matvar/async_addopt_delay_blocks_5.mat
-assets/matvar/async_addopt_delay_blocks_10.mat
-assets/matvar/async_addopt_delay_blocks_15.mat
-assets/matvar/async_addopt_delay_blocks_20.mat
 assets/matvar/async_addopt_delay_blocks_20_stepsize_005.mat
-assets/matvar/async_addopt_delay_blocks_0_stepsize_0_001.mat
-assets/matvar/async_addopt_delay_blocks_0_stepsize_0_005.mat
-assets/matvar/async_addopt_switching_residual_arxiv.mat
-assets/matvar/async_frost_delay_blocks_1.mat
-assets/matvar/async_frost_delay_blocks_2.mat
-assets/matvar/async_frost_delay_blocks_5.mat
+
+# triton test scripts
+triton_scripts/compute_gradient.m
+triton_scripts/gen_aug_weight_matrix.m
+triton_scripts/gen_cs_aug_matrix.m
+triton_scripts/run.sh
+triton_scripts/alpha.txt
 
 # temporary images
 #case1.png

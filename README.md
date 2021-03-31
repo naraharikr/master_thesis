@@ -42,6 +42,7 @@ The project is organized into three folders, namely:
 
 * `sync_networks` contains implementation of `push-sum`, `subgradient-push`, `ADD-OPT`,` Projected Subgradient`and `FROST` algorithms with synchronous networks
 * `async_networks` contains an implementation of `ADD-OPT` and `FROST` algorithms with asynchronous networks
+* `triton_scripts` contains an testscripts and logs of ADD-OPT with delay networks for 28 step-sizes with 10 delays for each
 * `assets` contains `plots` containing convergence and residual plots (.png format) & matlab workspace variables are stored in `matvar`
 
 ## Scripts
