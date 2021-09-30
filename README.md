@@ -1,4 +1,4 @@
-# Distributed Coordination over Directed graphs using Row-stochastic weights
+# Accelerated Distributed Directed Optimization With Time Delays
 
 In the presented work, we study the distributed optimization over directed graphs with row-stochastic weights as each agent need not know of its out-neighbors, which is not practical in real-world applications.  In general,  the information exchange between the agents are asynchronous and hence we keep the main focus on asynchronous networks, i.e., network with delays in the communication. ADD-OPT is proven to linearly converge to optimal value when the weight matrix is column-stochastic, and on the other hand, the FROST algorithm is best and converges faster than the previous one with row-stochastic weights.  In simple words, FROST is better than ADD-OPT in convergence and more practical for real-world problems.  The contribution of the present work is to implement the asynchronous versions for ADD-OPT and FROST and to study the convergence results for better performance and convergence.
 
